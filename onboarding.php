@@ -1,0 +1,308 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Handle Form Submission (Mocking persistence in Session)
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['onboarding_data'] = [
+        'accommodation' => $_POST['accommodation'] ?? '',
+        'mess' => $_POST['mess'] ?? '',
+        'campus' => $_POST['campus'] ?? '',
+        'institute' => $_POST['institute'] ?? '',
+        'course' => $_POST['course'] ?? '',
+        'year' => $_POST['year'] ?? '',
+        'gym' => $_POST['gym'] ?? '',
+        'country' => $_POST['country'] ?? '',
+        'international_student' => ($_POST['country'] === 'Other') ? true : false,
+    ];
+    header("Location: home.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding - SI UNIVERSE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        .step-content { transition: opacity 0.3s ease-in-out; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen font-[Inter]">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center">
+                <i class="fas fa-graduation-cap text-white text-sm"></i>
+            </div>
+            <span class="text-xl font-bold text-gray-800 tracking-tight">SI UNIVERSE</span>
+        </div>
+    </header>
+
+    <div class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden border border-gray-100">
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-100 h-2">
+                <div id="progressBar" class="bg-blue-600 h-2 transition-all duration-500" style="width: 14.28%"></div>
+            </div>
+
+            <form id="onboardingForm" method="POST" action="">
+                <!-- Step 1: Accommodation -->
+                <div id="step1" class="p-8 step-content">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">1. Accommodation</h2>
+                    <p class="text-gray-500 mb-6">Where are you staying?</p>
+                    
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <label class="flex items-center p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="accommodation" value="Hostel" class="mr-4 w-5 h-5" required onchange="toggleMess(true)">
+                            <div class="flex-1">
+                                <span class="font-bold text-gray-700 block">Hostel</span>
+                                <span class="text-xs text-gray-500">Living on campus</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="accommodation" value="PG / Flat" class="mr-4 w-5 h-5" onchange="toggleMess(false)">
+                            <div class="flex-1">
+                                <span class="font-bold text-gray-700 block">PG / Flat</span>
+                                <span class="text-xs text-gray-500">Living outside campus</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="accommodation" value="Day Scholar" class="mr-4 w-5 h-5" onchange="toggleMess(false)">
+                            <div class="flex-1">
+                                <span class="font-bold text-gray-700 block">Day Scholar</span>
+                                <span class="text-xs text-gray-500">Commuting from home</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div id="messSelection" class="hidden animate-in">
+                        <h3 class="text-sm font-semibold text-gray-700 mb-3">Which Mess do you use?</h3>
+                        <select name="mess" id="messSelect" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">-- Choose Mess --</option>
+                            <option value="Viola Mess">Viola Mess</option>
+                            <option value="SIT Mess">SIT Mess</option>
+                            <option value="Petunia Mess">Petunia Mess</option>
+                            <option value="Medical Mess">Medical Mess</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: Campus Location -->
+                <div id="step2" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">2. Campus Location</h2>
+                    <p class="text-gray-500 mb-6">Select your primary campus base.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="text-center p-6 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="campus" value="Hill Base" class="hidden peer">
+                            <div class="peer-checked:text-blue-600">
+                                <i class="fas fa-mountain text-3xl mb-2"></i>
+                                <span class="block font-bold">Hill Base</span>
+                            </div>
+                        </label>
+                        <label class="text-center p-6 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="campus" value="Hilltop" class="hidden peer">
+                            <div class="peer-checked:text-blue-600">
+                                <i class="fas fa-tree text-3xl mb-2"></i>
+                                <span class="block font-bold">Hilltop</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 3: Institute -->
+                <div id="step3" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">3. Institute</h2>
+                    <p class="text-gray-500 mb-6">Select your institute at SIU.</p>
+                    <select name="institute" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                        <option value="">-- Choose Institute --</option>
+                        <?php 
+                        $insts = ["SAII", "SIMC", "SIBM", "SIDTM", "SIT", "SSBF", "SSVAP", "SSCANS", "SCON", "SCHS", "SSSS", "SIHS", "SMCW", "SSODL", "STLRC", "SCRI"];
+                        foreach($insts as $i) echo "<option value='$i'>$i</option>";
+                        ?>
+                    </select>
+                </div>
+
+                <!-- Step 4: Course & Section -->
+                <div id="step4" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">4. Course & Section</h2>
+                    <p class="text-gray-500 mb-6">Enter your course and select your section.</p>
+                    <div class="space-y-4">
+                        <input type="text" name="course" placeholder="e.g. B.Tech Computer Science" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                        <select name="section" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                            <option value="">-- Choose Section --</option>
+                            <option value="Section A">Section A</option>
+                            <option value="Section B">Section B</option>
+                            <option value="Section C">Section C</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 5: Year -->
+                <div id="step5" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">5. Year</h2>
+                    <p class="text-gray-500 mb-6">Select your current academic year.</p>
+                    <div class="grid grid-cols-3 gap-4">
+                        <?php foreach([1, 2, 3] as $y): ?>
+                        <label class="text-center p-6 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="year" value="<?= $y ?>" class="hidden peer">
+                            <div class="peer-checked:text-blue-600">
+                                <span class="text-3xl font-bold"><?= $y ?></span>
+                                <span class="block text-sm uppercase">Year</span>
+                            </div>
+                        </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- Step 6: Gym -->
+                <div id="step6" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">6. Gym Choice</h2>
+                    <p class="text-gray-500 mb-6">Which gym do you visit?</p>
+                    <div class="space-y-3">
+                        <?php 
+                        $gyms = ["Sit Gym", "Viola Gym", "Medical Gym", "Hill Top Gym", "no gym"];
+                        foreach($gyms as $g): 
+                        ?>
+                        <label class="flex items-center p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="gym" value="<?= $g ?>" class="mr-4 w-5 h-5">
+                            <span class="font-bold text-gray-700"><?= $g ?></span>
+                        </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- Step 7: Country -->
+                <div id="step7" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">7. Origin</h2>
+                    <p class="text-gray-500 mb-6">Where are you from?</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="text-center p-8 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="country" value="India" class="hidden peer" required>
+                            <div class="peer-checked:text-blue-600">
+                                <i class="fas fa-flag text-4xl mb-2 text-orange-500"></i>
+                                <span class="block font-bold">India</span>
+                            </div>
+                        </label>
+                        <label class="text-center p-8 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
+                            <input type="radio" name="country" value="Other" class="hidden peer">
+                            <div class="peer-checked:text-blue-600">
+                                <i class="fas fa-globe-americas text-4xl mb-2 text-blue-500"></i>
+                                <span class="block font-bold">International</span>
+                            </div>
+                        </label>
+                    </div>
+                    <p id="intl-notice" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-sm italic">
+                        <i class="fas fa-info-circle mr-2"></i> You will be automatically added to the International Students Community!
+                    </p>
+                </div>
+
+                <!-- Navigation -->
+                <div class="p-8 bg-gray-50 flex justify-between items-center border-t border-gray-100">
+                    <button type="button" id="prevBtn" onclick="next(-1)" class="text-gray-500 font-semibold hover:text-gray-800 disabled:opacity-30" disabled>
+                        <i class="fas fa-chevron-left mr-1"></i> Back
+                    </button>
+                    <button type="button" id="nextBtn" onclick="next(1)" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg hover:bg-blue-700 transition-all">
+                        Continue <i class="fas fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 1;
+        const totalTabs = 7;
+
+        function showTab(n) {
+            const tabs = document.getElementsByClassName("step-content");
+            tabs[n-1].classList.remove("hidden");
+            
+            // Buttons
+            document.getElementById("prevBtn").disabled = (n === 1);
+            if (n === totalTabs) {
+                document.getElementById("nextBtn").innerHTML = "Finish Profile <i class='fas fa-check ml-1'></i>";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Continue <i class='fas fa-chevron-right ml-1'></i>";
+            }
+
+            // Progress Bar
+            document.getElementById("progressBar").style.width = (n / totalTabs * 100) + "%";
+        }
+
+        function next(n) {
+            const tabs = document.getElementsByClassName("step-content");
+            
+            // Validation (simplified)
+            if (n === 1 && !validateForm()) return false;
+
+            tabs[currentTab-1].classList.add("hidden");
+            currentTab = currentTab + n;
+
+            if (currentTab > totalTabs) {
+                document.getElementById("onboardingForm").submit();
+                return false;
+            }
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            // Basic validation for radios and text
+            const tab = document.getElementsByClassName("step-content")[currentTab-1];
+            const inputs = tab.querySelectorAll("input[required], select[required], input[type='radio']:checked");
+            
+            // Step 1 extra validation for mess if Hostel
+            if (currentTab === 1) {
+                const acc = document.querySelector('input[name="accommodation"]:checked');
+                if (!acc) { alert("Please select accommodation"); return false; }
+                if (acc.value === "Hostel" && document.getElementById("messSelect").value === "") {
+                    alert("Please select your Mess"); return false;
+                }
+            }
+
+            if (currentTab === 3 && document.querySelector('select[name="institute"]').value === "") {
+                alert("Please select your Institute"); return false;
+            }
+            
+            if (currentTab === 4 && document.querySelector('input[name="course"]').value === "") {
+                alert("Please enter your course"); return false;
+            }
+
+            if (currentTab === 7) {
+                const country = document.querySelector('input[name="country"]:checked');
+                if (!country) { alert("Please select your origin"); return false; }
+            }
+
+            return true;
+        }
+
+        function toggleMess(show) {
+            const el = document.getElementById("messSelection");
+            if (show) el.classList.remove("hidden");
+            else el.classList.add("hidden");
+        }
+
+        // Country logic for international student notice
+        document.querySelectorAll('input[name="country"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const notice = document.getElementById("intl-notice");
+                if (e.target.value === 'Other') notice.classList.remove('hidden');
+                else notice.classList.add('hidden');
+            });
+        });
+
+        // Initialize
+        showTab(currentTab);
+    </script>
+</body>
+</html>
