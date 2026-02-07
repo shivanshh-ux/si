@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-br from-accent/10 to-primary/10 py-20">
@@ -68,7 +68,7 @@
     <!-- MAIN GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <!-- Institute Official Group -->
+      <!-- Carrer & Opportunities -->
       <div class="bg-white rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all">
         <div class="p-6 sm:p-8">
           <div class="flex items-center space-x-4 mb-6">
@@ -76,20 +76,20 @@
               <i class="fas fa-university text-blue-600 text-2xl"></i>
             </div>
             <div>
-              <h3 class="text-xl font-bold text-gray-800">Institute Official Group</h3>
+              <h3 class="text-xl font-bold text-gray-800">Career & Opportunities</h3>
               <span class="text-blue-600 font-semibold">Official Announcements</span>
             </div>
           </div>
 
           <ul class="space-y-3 mb-6 text-gray-700">
-            <li class="flex items-center"><i class="fas fa-bullhorn text-blue-500 mr-3"></i>Official announcements</li>
-            <li class="flex items-center"><i class="fas fa-calendar-check text-blue-500 mr-3"></i>Important dates</li>
-            <li class="flex items-center"><i class="fas fa-file-alt text-blue-500 mr-3"></i>Policy updates</li>
-            <li class="flex items-center"><i class="fas fa-users text-blue-500 mr-3"></i>Faculty-student updates</li>
+            <li class="flex items-center"><i class="fas fa-bullhorn text-blue-500 mr-3"></i>Internships</li>
+            <li class="flex items-center"><i class="fas fa-calendar-check text-blue-500 mr-3"></i>Jobs Guidance</li>
+            <li class="flex items-center"><i class="fas fa-file-alt text-blue-500 mr-3"></i>Competitions</li>
+            <li class="flex items-center"><i class="fas fa-users text-blue-500 mr-3"></i>Career Guidance</li>
           </ul>
 
           <button class="w-full bg-green-500 hover:bg-green-600 text-white py-3 sm:py-4 rounded-xl font-semibold transition-all">
-            <i class="fab fa-whatsapp mr-2"></i>Join Official Group
+            <i class="fab fa-whatsapp mr-2"></i>Join Career & Opportunities Group
           </button>
         </div>
       </div>
@@ -128,20 +128,20 @@
               <i class="fas fa-flask text-red-600 text-2xl"></i>
             </div>
             <div>
-              <h3 class="text-xl font-bold text-gray-800">Research Community</h3>
-              <span class="text-red-600 font-semibold">Academic Research</span>
+              <h3 class="text-xl font-bold text-gray-800">Events & Workshops</h3>
+              <span class="text-red-600 font-semibold">Academic Events</span>
             </div>
           </div>
 
           <ul class="space-y-3 mb-6 text-gray-700">
-            <li class="flex items-center"><i class="fas fa-microscope text-red-500 mr-3"></i>Collaborations</li>
-            <li class="flex items-center"><i class="fas fa-file-contract text-red-500 mr-3"></i>Publications</li>
-            <li class="flex items-center"><i class="fas fa-graduation-cap text-red-500 mr-3"></i>Higher studies</li>
-            <li class="flex items-center"><i class="fas fa-award text-red-500 mr-3"></i>Grants</li>
+            <li class="flex items-center"><i class="fas fa-microscope text-red-500 mr-3"></i>College Events</li>
+            <li class="flex items-center"><i class="fas fa-file-contract text-red-500 mr-3"></i>Seminars</li>
+            <li class="flex items-center"><i class="fas fa-graduation-cap text-red-500 mr-3"></i>Hackathons</li>
+            <li class="flex items-center"><i class="fas fa-award text-red-500 mr-3"></i>Workshops</li>
           </ul>
 
           <button class="w-full bg-green-500 hover:bg-green-600 text-white py-3 sm:py-4 rounded-xl font-semibold transition-all">
-            <i class="fab fa-whatsapp mr-2"></i>Join Research Group
+            <i class="fab fa-whatsapp mr-2"></i>Join Events & Workshops Group
           </button>
         </div>
       </div>
@@ -235,4 +235,4 @@
     });
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

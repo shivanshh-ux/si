@@ -4,7 +4,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
-include 'header.php';
+include 'includes/header.php';
 
 $p = $_SESSION['onboarding_data'] ?? [
     'accommodation' => 'Not set',
@@ -29,9 +29,11 @@ $p = $_SESSION['onboarding_data'] ?? [
                     <p class="text-blue-100"><?php echo $p['course']; ?> • <?php echo $p['institute']; ?></p>
                 </div>
             </div>
-            <a href="onboarding.php" class="absolute top-8 right-8 bg-white/10 hover:bg-white/20 p-2 rounded-lg backdrop-blur-sm transition-all text-sm border border-white/20">
-                <i class="fas fa-edit mr-1"></i> Edit Profile
-            </a>
+            <div class="absolute top-8 right-8">
+                <a href="logout.php" class="bg-red-500/20 hover:bg-red-500/40 p-2 rounded-lg backdrop-blur-sm transition-all text-sm border border-red-500/30 text-white">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </a>
+            </div>
         </div>
 
         <div class="p-8">
@@ -112,4 +114,4 @@ $p = $_SESSION['onboarding_data'] ?? [
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

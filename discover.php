@@ -1,10 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-include 'header.php';
+
+include 'includes/header.php';
 $p = $_SESSION['onboarding_data'] ?? null;
 $user_inst = $p['institute'] ?? 'SIT';
 $user_course = $p['course'] ?? 'B.Tech';
@@ -59,7 +56,7 @@ $user_course = $p['course'] ?? 'B.Tech';
                     </div>
                     <div class="ml-4 flex bg-gray-100 p-1 rounded-lg">
                         <button onclick="switchTab('peers')" id="tabPeers" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all bg-white shadow-sm text-primary">Peers</button>
-                        <button onclick="switchTab('groups')" id="tabGroups" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all text-gray-500">Groups</button>
+                        <!-- <button onclick="switchTab('groups')" id="tabGroups" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all text-gray-500">Groups</button> -->
                     </div>
                 </div>
             </div>
@@ -313,4 +310,4 @@ $user_course = $p['course'] ?? 'B.Tech';
     });
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

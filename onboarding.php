@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'country' => $_POST['country'] ?? '',
         'international_student' => ($_POST['country'] === 'Other') ? true : false,
     ];
-    header("Location: home.php");
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -144,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="Section A">Section A</option>
                             <option value="Section B">Section B</option>
                             <option value="Section C">Section C</option>
+                            <option value="Section D">Section D</option>
                         </select>
                     </div>
                 </div>
@@ -207,6 +208,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </p>
                 </div>
 
+                <!-- Step 8: Password -->
+                <div id="step8" class="p-8 step-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">8. Set Your Password</h2>
+                    <p class="text-gray-500 mb-6">Create a secure password for your account.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <label class="block text-gray-700 text-sm font-semibold mb-2" for="password">Password</label>
+                            <div class="relative">
+                                <input type="password" id="password" name="password" placeholder="••••••••" 
+                                       class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                                <button type="button" onclick="togglePasswordVisibility('password')" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                    <i id="password-eye" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="password-requirements" class="mt-2 text-xs space-y-1 text-gray-500">
+                                <p id="req-length" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least 8 characters</p>
+                                <p id="req-number" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one number</p>
+                                <p id="req-special" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one special character</p>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <label class="block text-gray-700 text-sm font-semibold mb-2" for="confirm_password">Confirm Password</label>
+                            <div class="relative">
+                                <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" 
+                                       class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                                <button type="button" onclick="togglePasswordVisibility('confirm_password')" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                    <i id="confirm_password-eye" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <p id="match-error" class="hidden mt-1 text-xs text-red-500">Passwords do not match</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Navigation -->
                 <div class="p-8 bg-gray-50 flex justify-between items-center border-t border-gray-100">
                     <button type="button" id="prevBtn" onclick="next(-1)" class="text-gray-500 font-semibold hover:text-gray-800 disabled:opacity-30" disabled>
@@ -222,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
         let currentTab = 1;
-        const totalTabs = 7;
+        const totalTabs = 8;
 
         function showTab(n) {
             const tabs = document.getElementsByClassName("step-content");
@@ -259,7 +296,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function validateForm() {
             // Basic validation for radios and text
             const tab = document.getElementsByClassName("step-content")[currentTab-1];
-            const inputs = tab.querySelectorAll("input[required], select[required], input[type='radio']:checked");
             
             // Step 1 extra validation for mess if Hostel
             if (currentTab === 1) {
@@ -283,8 +319,82 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!country) { alert("Please select your origin"); return false; }
             }
 
+            // Step 8: Password Validation
+            if (currentTab === 8) {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm_password').value;
+
+                if (password.length < 8) {
+                    alert("Password must be at least 8 characters long");
+                    return false;
+                }
+                if (!/\d/.test(password)) {
+                    alert("Password must contain at least one number");
+                    return false;
+                }
+                if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                    alert("Password must contain at least one special character");
+                    return false;
+                }
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match");
+                    return false;
+                }
+            }
+
             return true;
         }
+
+        function togglePasswordVisibility(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(fieldId + '-eye');
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Live Password Validation
+        document.getElementById('password').addEventListener('input', function(e) {
+            const val = e.target.value;
+            const reqs = {
+                length: val.length >= 8,
+                number: /\d/.test(val),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(val)
+            };
+
+            updateReq('req-length', reqs.length);
+            updateReq('req-number', reqs.number);
+            updateReq('req-special', reqs.special);
+        });
+
+        function updateReq(id, met) {
+            const el = document.getElementById(id);
+            if (met) {
+                el.classList.remove('text-gray-500');
+                el.classList.add('text-green-500');
+                el.querySelector('i').className = 'fas fa-check-circle mr-2';
+            } else {
+                el.classList.remove('text-green-500');
+                el.classList.add('text-gray-500');
+                el.querySelector('i').className = 'fas fa-circle text-[6px] mr-2';
+            }
+        }
+
+        document.getElementById('confirm_password').addEventListener('input', function(e) {
+            const pass = document.getElementById('password').value;
+            const matchError = document.getElementById('match-error');
+            if (e.target.value && e.target.value !== pass) {
+                matchError.classList.remove('hidden');
+            } else {
+                matchError.classList.add('hidden');
+            }
+        });
 
         function toggleMess(show) {
             const el = document.getElementById("messSelection");

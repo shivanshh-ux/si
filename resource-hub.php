@@ -1,10 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-include 'header.php';
+
+include 'includes/header.php';
 $p = $_SESSION['onboarding_data'] ?? null;
 $user_inst = $p['institute'] ?? 'SIT';
 $user_course = $p['course'] ?? 'B.Tech';
@@ -469,4 +466,4 @@ $is_cr = false; // Mocking CR status
     });
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

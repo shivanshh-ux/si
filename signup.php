@@ -209,7 +209,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const otp = document.getElementById('otp').value;
             if(otp === '1234') { // Mock verification
                 document.getElementById('otp-error').classList.add('hidden');
-                goToStep(3);
+                // Skip Step 3 and redirect to onboarding.php directly
+                window.location.href = 'onboarding.php';
             } else {
                 document.getElementById('otp-error').classList.remove('hidden');
             }

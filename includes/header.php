@@ -97,9 +97,6 @@
                                 <i class="fas fa-user-circle text-2xl mr-2"></i>
                                 <span class="hidden lg:inline font-medium"><?php echo $_SESSION['user_name'] ?? 'Profile'; ?></span>
                             </a>
-                            <a href="logout.php" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors text-sm font-medium">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
                         </div>
                     <?php else: ?>
                         <a href="login.php" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors font-medium">
@@ -110,7 +107,7 @@
             </div>
         </div>
     </nav>
-
+                        
     <!-- Mobile Account Link (Bottom) -->
     <div class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
         <?php

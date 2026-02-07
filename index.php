@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+
 include 'includes/header.php';
 ?>
 
@@ -26,13 +23,13 @@ include 'includes/header.php';
                     <p class="text-gray-800 font-bold mb-2">Core Philosophy:</p>
                     <p class="text-gray-700">"Decide online. Meet offline. No random chatting. WhatsApp groups are only for planning time & place."</p>
                 </div>
-                <button onclick="showOnboardingModal()" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl font-semibold">
+                <!-- <button onclick="showOnboardingModal()" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl font-semibold">
                     Get Started <i class="fas fa-arrow-right ml-2"></i>
-                </button>
+                </button> -->
             </div>
             <div data-aos="fade-left" class="relative">
                 <div class="bg-white rounded-2xl shadow-2xl p-8">
-                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                 <!-- <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                         <div class="bg-primary/10 p-4 rounded-xl text-center">
                             <div class="text-3xl font-bold text-primary count-up" data-count="25">0</div>
                             <div class="text-sm text-gray-600">Communities</div>
@@ -45,7 +42,7 @@ include 'includes/header.php';
                             <div class="text-3xl font-bold text-accent count-up" data-count="100">0</div>
                             <div class="text-sm text-gray-600">Resources</div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
@@ -72,22 +69,7 @@ include 'includes/header.php';
     </div>
 </section>
 
-<!-- Rules Banner -->
-<section class="bg-gradient-to-r from-secondary to-primary text-white py-8">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="text-center md:text-left mb-4 md:mb-0">
-                <h3 class="text-xl font-bold mb-2">Strict Community Rules</h3>
-                <p class="opacity-90">No mixing between Hostel, PG, and Day Scholar communities</p>
-            </div>
-            <div class="flex space-x-2">
-                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Hostel ❌ PG</span>
-                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">PG ❌ Day Scholar</span>
-                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Day Scholar ❌ Hostel</span>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <?php
 $p = $_SESSION['onboarding_data'] ?? null;
