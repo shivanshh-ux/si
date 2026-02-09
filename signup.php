@@ -10,6 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     // Mock Registration Logic
+    // Check if we are skipping details (fast-track from OTP)
+    if (isset($_POST['skip_details']) && $_POST['skip_details'] === 'true') {
+        $_SESSION['user_id'] = rand(10, 1000);
+        $_SESSION['user_name'] = "Student " . $_SESSION['user_id'];
+        header("Location: onboarding.php");
+        exit();
+    }
+
     // In a real app, validation and DB insertion would happen here
     if (!empty($email) && !empty($password) && !empty($first_name)) {
         $_SESSION['user_id'] = rand(10, 1000); // Random ID for new user
@@ -86,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <form method="POST" action="" id="signupForm">
+                <input type="hidden" name="skip_details" id="skip_details" value="false">
                 
                 <!-- STEP 1: Email -->
                 <div id="step-1">
@@ -209,8 +218,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const otp = document.getElementById('otp').value;
             if(otp === '1234') { // Mock verification
                 document.getElementById('otp-error').classList.add('hidden');
-                // Skip Step 3 and redirect to onboarding.php directly
-                window.location.href = 'onboarding.php';
+                // Set hidden field and submit form to establish server-side session
+                document.getElementById('skip_details').value = 'true';
+                document.activeElement.blur(); // Remove focus
+                document.getElementById('signupForm').submit();
             } else {
                 document.getElementById('otp-error').classList.remove('hidden');
             }
