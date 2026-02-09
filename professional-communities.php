@@ -5,7 +5,7 @@
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                Professional Communities
+                Professional community
             </h1>
             <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
                 Network with peers, explore opportunities, and grow professionally. Same rules apply: WhatsApp groups for planning only.

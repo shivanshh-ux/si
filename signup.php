@@ -3,29 +3,23 @@ session_start();
 
 // Handle Registration
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $first_name = $_POST['first_name'] ?? '';
-    $last_name = $_POST['last_name'] ?? '';
     $email = $_POST['email'] ?? '';
-    $contact = $_POST['contact'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $otp = $_POST['otp'] ?? '';
 
-    // Mock Registration Logic
-    // Check if we are skipping details (fast-track from OTP)
-    if (isset($_POST['skip_details']) && $_POST['skip_details'] === 'true') {
-        $_SESSION['user_id'] = rand(10, 1000);
-        $_SESSION['user_name'] = "Student " . $_SESSION['user_id'];
-        header("Location: onboarding.php");
-        exit();
-    }
-
-    // In a real app, validation and DB insertion would happen here
-    if (!empty($email) && !empty($password) && !empty($first_name)) {
+    // Server-side OTP Verification
+    if (!empty($otp) && isset($_SESSION['verification_otp']) && $otp === $_SESSION['verification_otp']) {
         $_SESSION['user_id'] = rand(10, 1000); // Random ID for new user
-        $_SESSION['user_name'] = $first_name . ' ' . $last_name;
+        $_SESSION['user_name'] = "Student " . $_SESSION['user_id'];
+        $_SESSION['email'] = $email;
+        
+        // Clear verification session data
+        unset($_SESSION['verification_otp']);
+        unset($_SESSION['temp_email']);
+        
         header("Location: onboarding.php");
         exit();
     } else {
-        $error = "Please fill in all fields.";
+        $error = "Invalid or expired verification code.";
     }
 }
 ?>
@@ -130,9 +124,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <i class="fas fa-key text-gray-400"></i>
                             </div>
                             <input class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors tracking-widest text-lg" 
-                                   id="otp" type="text" placeholder="Enter 4-digit code" maxlength="4">
+                                   id="otp" name="otp" type="text" placeholder="Enter 6-digit code" maxlength="6">
                         </div>
-                        <p id="otp-error" class="text-red-500 text-xs mt-2 hidden">Invalid OTP. Try 1234.</p>
+                        <p id="otp-error" class="text-red-500 text-xs mt-2 hidden">Invalid OTP. Please check your email.</p>
                     </div>
                     <button type="button" onclick="verifyOtpStep()" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition-all shadow-lg">
                         Verify Email
@@ -142,55 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
 
-                <!-- STEP 3: User Details -->
-                <div id="step-3" class="hidden">
-                    <div class="grid grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label class="block text-gray-700 text-xs font-semibold mb-1" for="first_name">First Name</label>
-                            <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" 
-                                   id="first_name" type="text" name="first_name" placeholder="John" required>
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 text-xs font-semibold mb-1" for="last_name">Last Name</label>
-                            <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" 
-                                   id="last_name" type="text" name="last_name" placeholder="Doe" required>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                         <label class="block text-gray-700 text-xs font-semibold mb-1" for="contact">Contact Number</label>
-                         <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" 
-                                id="contact" type="tel" name="contact" placeholder="1234567890">
-                    </div>
-
-                    <!-- Password -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-xs font-semibold mb-1" for="password">Password</label>
-                        <div class="relative">
-                            <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" 
-                                   id="password" type="password" name="password" placeholder="••••••••" required>
-                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none" onclick="togglePassword('password')">
-                                <i class="fas fa-eye" id="password-icon"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-xs font-semibold mb-1" for="confirm_password">Confirm Password</label>
-                        <div class="relative">
-                            <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" 
-                                   id="confirm_password" type="password" name="confirm_password" placeholder="••••••••" required>
-                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none" onclick="togglePassword('confirm_password')">
-                                <i class="fas fa-eye" id="confirm_password-icon"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition-all shadow-lg hover:shadow-xl">
-                        Complete Registration
-                    </button>
-                </div>
+                <!-- Step 3 has been removed for a faster signup experience -->
 
             </form>
         </div>
@@ -200,27 +146,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function goToStep(step) {
             document.getElementById('step-1').classList.add('hidden');
             document.getElementById('step-2').classList.add('hidden');
-            document.getElementById('step-3').classList.add('hidden');
             document.getElementById('step-' + step).classList.remove('hidden');
         }
 
-        function verifyEmailStep() {
-            const email = document.getElementById('email').value;
+        async function verifyEmailStep() {
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value;
+            const nextBtn = document.querySelector('#step-1 button');
+            
             if(email && email.includes('@')) {
-                document.getElementById('display-email').innerText = email;
-                goToStep(2);
+                // Show loading state
+                const originalText = nextBtn.innerHTML;
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+
+                try {
+                    const response = await fetch('includes/ajax-send-otp.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'email=' + encodeURIComponent(email)
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if(data.success) {
+                        document.getElementById('display-email').innerText = email;
+                        goToStep(2);
+                    } else {
+                        alert(data.message || "Failed to send verification code. Please try again.");
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("An error occurred. Please try again.");
+                } finally {
+                    nextBtn.disabled = false;
+                    nextBtn.innerHTML = originalText;
+                }
             } else {
                 alert("Please enter a valid email address");
             }
         }
 
         function verifyOtpStep() {
-            const otp = document.getElementById('otp').value;
-            if(otp === '1234') { // Mock verification
-                document.getElementById('otp-error').classList.add('hidden');
-                // Set hidden field and submit form to establish server-side session
-                document.getElementById('skip_details').value = 'true';
-                document.activeElement.blur(); // Remove focus
+            const otpInput = document.getElementById('otp');
+            const otp = otpInput.value;
+            const verifyBtn = document.querySelector('#step-2 button');
+
+            if(otp.length >= 6) {
+                // Submit the form directly to verify on server and redirect
+                verifyBtn.disabled = true;
+                verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Verifying...';
                 document.getElementById('signupForm').submit();
             } else {
                 document.getElementById('otp-error').classList.remove('hidden');

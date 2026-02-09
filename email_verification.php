@@ -5,14 +5,21 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $otp = $_POST['otp'] ?? '';
     
-    // Mock Verification Logic
-    if (!empty($otp) && strlen($otp) >= 4) {
-        // Assume correct
+    // Check against session OTP
+    if (!empty($otp) && isset($_SESSION['verification_otp']) && $otp === $_SESSION['verification_otp']) {
+        // Success
+        $_SESSION['email_verified'] = true;
         header("Location: onboarding.php");
         exit();
     } else {
-        $error = "Invalid code. Please try again.";
+        $error = "Invalid code. Please check your email and try again.";
     }
+}
+
+// Redirect if no verification session is active
+if (!isset($_SESSION['verification_otp'])) {
+    header("Location: signup.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>

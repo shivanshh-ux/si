@@ -43,24 +43,99 @@ include 'includes/header.php';
                             <div class="text-sm text-gray-600">Resources</div>
                         </div>
                     </div> -->
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Communities</h2>
+                        <p class="text-sm text-gray-500">Connect with your college community</p>
+                    </div>
                     <div class="space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-check text-green-600"></i>
+                        <!-- Mess Improvement Card -->
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-utensils text-green-600"></i>
                             </div>
-                            <span class="text-gray-700">Predefined verified communities only</span>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 text-sm">Mess Improvement</h4>
+                                <p class="text-[10px] text-gray-500">Menu change, protein food, special items, reduce oil & salt</p>
+                                <p class="text-[10px] text-gray-400 mt-1">100 people</p>
+                            </div>
+                            <div class="text-gray-300 ml-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-check text-green-600"></i>
+
+                        <!-- Viola Hostel Card -->
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-hotel text-orange-600"></i>
                             </div>
-                            <span class="text-gray-700">No auto-creation of communities</span>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 text-sm">Viola Hostel</h4>
+                                <p class="text-[10px] text-gray-500">Late-night snacks, borrowing items</p>
+                                <p class="text-[10px] text-gray-400 mt-1">100 people</p>
+                            </div>
+                            <div class="text-gray-300 ml-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-check text-green-600"></i>
+
+                        <!-- Gym Community Card -->
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-dumbbell text-yellow-600"></i>
                             </div>
-                            <span class="text-gray-700">WhatsApp groups for planning only</span>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 text-sm">Gym Community</h4>
+                                <p class="text-[10px] text-gray-500">SIT, Viola, Hilltop, Medical</p>
+                                <p class="text-[10px] text-gray-400 mt-1">100 people</p>
+                            </div>
+                            <div class="text-gray-300 ml-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                        </div>
+
+                        <!-- Sports Community Card -->
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-futbol text-blue-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 text-sm">Sports Community</h4>
+                                <p class="text-[10px] text-gray-500">Football, Basketball, Cricket, Badminton</p>
+                                <p class="text-[10px] text-gray-400 mt-1">100 people</p>
+                            </div>
+                            <div class="text-gray-300 ml-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                        </div>
+
+                        <!-- Hometown City Card -->
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-city text-green-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 text-sm">Hometown City</h4>
+                                <p class="text-[10px] text-gray-500">Connect with people from your city</p>
+                                <p class="text-[10px] text-gray-400 mt-1">100 people</p>
+                            </div>
+                            <div class="text-gray-300 ml-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                        </div>
+
+                        <!-- Native State Card -->
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                            <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-globe-asia text-blue-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-gray-800 text-sm">Native State</h4>
+                                <p class="text-[10px] text-gray-500">People from Native State</p>
+                                <p class="text-[10px] text-gray-400 mt-1">100 people</p>
+                            </div>
+                            <div class="text-gray-300 ml-2">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
                         </div>
                     </div>
                 </div>

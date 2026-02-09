@@ -1,14 +1,14 @@
 // Main JavaScript for SI UNIVERSE
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize all animations and interactions
-    
+
     // Add subtle animation to all cards on page load
     const cards = document.querySelectorAll('.bg-white.rounded-xl, .bg-white.rounded-2xl');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
-        
+
         setTimeout(() => {
             anime({
                 targets: card,
@@ -20,27 +20,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 100);
     });
-    
+
     // Add ripple effect to buttons
     const buttons = document.querySelectorAll('button:not(.no-ripple)');
     buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             const x = e.clientX - e.target.getBoundingClientRect().left;
             const y = e.clientY - e.target.getBoundingClientRect().top;
-            
+
             const ripple = document.createElement('span');
             ripple.style.left = x + 'px';
             ripple.style.top = y + 'px';
             ripple.classList.add('ripple');
-            
+
             this.appendChild(ripple);
-            
+
             setTimeout(() => {
                 ripple.remove();
             }, 600);
         });
     });
-    
+
     // Add CSS for ripple effect
     const style = document.createElement('style');
     style.textContent = `
@@ -66,45 +66,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-    
-    // Handle WhatsApp join buttons
-    const whatsappButtons = document.querySelectorAll('button:contains("Join WhatsApp")');
-    whatsappButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // UI feedback only
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-external-link-alt mr-2"></i>Redirecting to WhatsApp...';
-            this.disabled = true;
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.disabled = false;
-                
-                // Show notification
-                showNotification('WhatsApp group link would open here (UI only)', 'info');
-            }, 1000);
-        });
+
+    // Handle WhatsApp and Download buttons
+    const allButtons = document.querySelectorAll('button');
+    allButtons.forEach(button => {
+        const text = button.textContent.toLowerCase();
+
+        if (text.includes('join whatsapp')) {
+            button.addEventListener('click', function () {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-external-link-alt mr-2"></i>Redirecting to WhatsApp...';
+                this.disabled = true;
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    showNotification('WhatsApp group link would open here (UI only)', 'info');
+                }, 1000);
+            });
+        }
+
+        if (text.includes('download')) {
+            button.addEventListener('click', function () {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Downloading...';
+                this.disabled = true;
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                    showNotification('File download would start here (UI only)', 'success');
+                }, 1500);
+            });
+        }
     });
-    
-    // Handle resource download buttons
-    const downloadButtons = document.querySelectorAll('button:contains("Download")');
-    downloadButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // UI feedback only
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Downloading...';
-            this.disabled = true;
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.disabled = false;
-                
-                // Show notification
-                showNotification('File download would start here (UI only)', 'success');
-            }, 1500);
-        });
-    });
-    
+
     // Add scroll progress indicator
     if (window.innerWidth > 768) {
         const progressBar = document.createElement('div');
@@ -112,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
         progressBar.style.width = '0%';
         progressBar.id = 'scroll-progress';
         document.body.appendChild(progressBar);
-        
+
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -120,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             progressBar.style.width = scrolled + '%';
         });
     }
-    
+
     // Parallax effect for hero sections
     const heroSections = document.querySelectorAll('section.bg-gradient-to-br');
     window.addEventListener('scroll', () => {
@@ -130,23 +126,23 @@ document.addEventListener('DOMContentLoaded', function() {
             section.style.transform = `translate3d(0, ${rate}px, 0)`;
         });
     });
-    
+
     // Initialize tooltips
     const tooltipElements = document.querySelectorAll('[title]');
     tooltipElements.forEach(el => {
-        el.addEventListener('mouseenter', function() {
+        el.addEventListener('mouseenter', function () {
             const tooltip = document.createElement('div');
             tooltip.className = 'fixed bg-gray-900 text-white px-3 py-2 rounded-lg text-sm z-50';
             tooltip.textContent = this.title;
             tooltip.id = 'custom-tooltip';
-            
+
             const rect = this.getBoundingClientRect();
             tooltip.style.left = rect.left + rect.width / 2 + 'px';
             tooltip.style.top = rect.top - 40 + 'px';
             tooltip.style.transform = 'translateX(-50%)';
-            
+
             document.body.appendChild(tooltip);
-            
+
             anime({
                 targets: tooltip,
                 opacity: [0, 1],
@@ -155,8 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 easing: 'easeOutCubic'
             });
         });
-        
-        el.addEventListener('mouseleave', function() {
+
+        el.addEventListener('mouseleave', function () {
             const tooltip = document.getElementById('custom-tooltip');
             if (tooltip) {
                 anime({
@@ -180,14 +176,14 @@ function showNotification(message, type = 'info') {
         warning: 'bg-yellow-500',
         error: 'bg-red-500'
     };
-    
+
     const icons = {
         info: 'fa-info-circle',
         success: 'fa-check-circle',
         warning: 'fa-exclamation-triangle',
         error: 'fa-times-circle'
     };
-    
+
     const notification = document.createElement('div');
     notification.className = `fixed bottom-4 right-4 ${colors[type]} text-white p-4 rounded-xl shadow-2xl z-[70] max-w-sm animate-slide-in-right`;
     notification.innerHTML = `
@@ -201,9 +197,9 @@ function showNotification(message, type = 'info') {
             </button>
         </div>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Auto-remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
@@ -235,7 +231,7 @@ function debounce(func, wait) {
 // Throttle function for scroll events
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -257,7 +253,7 @@ function setCookie(name, value, days) {
 function getCookie(name) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
+    for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') c = c.substring(1, c.length);
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);

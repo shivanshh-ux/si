@@ -74,14 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input type="radio" name="accommodation" value="PG / Flat" class="mr-4 w-5 h-5" onchange="toggleMess(false)">
                             <div class="flex-1">
                                 <span class="font-bold text-gray-700 block">PG / Flat</span>
-                                <span class="text-xs text-gray-500">Living outside campus</span>
+                                <span class="text-xs text-gray-500">Private Accommodation</span>
                             </div>
                         </label>
                         <label class="flex items-center p-4 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
                             <input type="radio" name="accommodation" value="Day Scholar" class="mr-4 w-5 h-5" onchange="toggleMess(false)">
                             <div class="flex-1">
                                 <span class="font-bold text-gray-700 block">Day Scholar</span>
-                                <span class="text-xs text-gray-500">Commuting from home</span>
+                                <span class="text-xs text-gray-500">Living with family</span>
                             </div>
                         </label>
                     </div>
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">5. Year</h2>
                     <p class="text-gray-500 mb-6">Select your current academic year.</p>
                     <div class="grid grid-cols-3 gap-4">
-                        <?php foreach([1, 2, 3] as $y): ?>
+                        <?php foreach([1, 2, 3, 4] as $y): ?>
                         <label class="text-center p-6 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
                             <input type="radio" name="year" value="<?= $y ?>" class="hidden peer">
                             <div class="peer-checked:text-blue-600">
@@ -225,8 +225,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div id="password-requirements" class="mt-2 text-xs space-y-1 text-gray-500">
                                 <p id="req-length" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least 8 characters</p>
-                                <p id="req-number" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one number</p>
-                                <p id="req-special" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one special character</p>
+                                <!-- <p id="req-number" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one number</p>
+                                <p id="req-special" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one special character</p> -->
                             </div>
                         </div>
 
