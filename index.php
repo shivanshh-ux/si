@@ -14,7 +14,7 @@ include 'includes/header.php';
                 </span> -->
                 <!-- <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                     Welcome to 
-                    <span class="text-primary">SI UNIVERSE</span>
+                    <span class="text-primary">SIU UNIVERSE</span>
                 </h1>
                 <p class="text-gray-600 text-lg mb-8">
                     <span id="typed-text" class="text-secondary font-semibold"></span>
@@ -273,7 +273,7 @@ $is_intl = $p['international_student'] ?? false;
 <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12" data-aos="fade-up">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">How SI UNIVERSE Works</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">How SIU UNIVERSE Works</h2>
             <p class="text-gray-600 max-w-2xl mx-auto">Simple, focused, and effective community platform</p>
         </div>
         

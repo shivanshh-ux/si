@@ -1,4 +1,4 @@
-// Main JavaScript for SI UNIVERSE
+// Main JavaScript for SIU UNIVERSE
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize all animations and interactions
@@ -307,7 +307,7 @@ function validateRequired(fields) {
 }
 
 // Export utilities for use in other scripts
-window.SIUniverse = {
+window.SIUUniverse = {
     showNotification,
     storage,
     validateEmail,

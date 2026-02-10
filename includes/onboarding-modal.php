@@ -10,7 +10,7 @@
                             <i class="fas fa-user-plus text-white"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-gray-800">Welcome to SI UNIVERSE</h3>
+                            <h3 class="text-xl font-bold text-gray-800">Welcome to SIU UNIVERSE</h3>
                             <p class="text-sm text-gray-600">Complete your profile to join communities</p>
                         </div>
                     </div>
@@ -500,7 +500,7 @@
                 </div>
                 <div>
                     <h4 class="font-bold">Welcome, ${name || 'Student'}!</h4>
-                    <p class="text-sm opacity-90">Your SI UNIVERSE profile is ready. Start exploring communities!</p>
+                    <p class="text-sm opacity-90">Your SIU UNIVERSE profile is ready. Start exploring communities!</p>
                 </div>
             </div>
         `;

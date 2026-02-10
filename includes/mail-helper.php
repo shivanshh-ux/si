@@ -29,25 +29,25 @@ function sendVerificationEmail($toEmail, $otp, $userName = 'Student') {
         $mail->Port       = 587;
 
         // Recipients
-        $mail->setFrom('info@akiraaonline.com', 'SI UNIVERSE');
+        $mail->setFrom('info@akiraaonline.com', 'SIU UNIVERSE');
         $mail->addAddress($toEmail, $userName);
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = 'Verify Your SI UNIVERSE Account';
+        $mail->Subject = 'Verify Your SIU UNIVERSE Account';
         $mail->Body    = "
             <div style='font-family: sans-serif; padding: 20px; color: #333;'>
-                <h2 style='color: #3B82F6;'>Welcome to SI UNIVERSE!</h2>
+                <h2 style='color: #3B82F6;'>Welcome to SIU UNIVERSE!</h2>
                 <p>Thank you for signing up. Please use the following code to verify your email address:</p>
                 <div style='background: #f3f4f6; padding: 15px; border-radius: 8px; text-align: center; margin: 20px 0;'>
                     <span style='font-size: 24px; font-bold; letter-spacing: 5px; color: #1E40AF;'>$otp</span>
                 </div>
                 <p>If you didn't request this, please ignore this email.</p>
                 <hr style='border: 0; border-top: 1px solid #eee; margin-top: 20px;'>
-                <p style='font-size: 12px; color: #888;'>SI UNIVERSE - Symbiosis International University Student Community</p>
+                <p style='font-size: 12px; color: #888;'>SIU UNIVERSE - Symbiosis International University Student Community</p>
             </div>
         ";
-        $mail->AltBody = "Welcome to SI UNIVERSE! Your verification code is: $otp";
+        $mail->AltBody = "Welcome to SIU UNIVERSE! Your verification code is: $otp";
 
         $mail->send();
         return true;

@@ -55,20 +55,14 @@ $is_cr = false; // Mocking CR status
         <!-- Category Filters -->
         <div class="mb-12 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
             <div class="flex items-center space-x-3 min-w-max">
-                <button class="bg-primary text-white px-6 py-2.5 rounded-full font-medium shadow-md shadow-primary/20 transition-all text-sm">
+                <!-- <button class="bg-primary text-white px-6 py-2.5 rounded-full font-medium shadow-md shadow-primary/20 transition-all text-sm">
                     All Resources
-                </button>
-                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Attendance
-                </button>
+                </button> -->
                 <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
                     Timetable
                 </button>
                 <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Assignments
-                </button>
-                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Study Materials
+                    Syllabus
                 </button>
                 <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
                     Curriculum
@@ -76,6 +70,7 @@ $is_cr = false; // Mocking CR status
                 <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
                     Holiday Schedule
                 </button>
+                    
             </div>
         </div>
         

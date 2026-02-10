@@ -11,7 +11,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-gray-800">Welcome Back</h3>
-                            <p class="text-sm text-gray-600">Login to SI UNIVERSE</p>
+                            <p class="text-sm text-gray-600">Login to SIU UNIVERSE</p>
                         </div>
                     </div>
                     <button onclick="closeLoginModal()" class="text-gray-400 hover:text-gray-600">
@@ -84,7 +84,7 @@
             <div class="p-6 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
                 <div class="text-center">
                     <p class="text-gray-600 text-sm">
-                        New to SI UNIVERSE?
+                        New to SIU UNIVERSE?
                         <button onclick="showOnboardingModal()" class="text-primary hover:text-secondary font-medium ml-1">
                             Start Onboarding
                         </button>

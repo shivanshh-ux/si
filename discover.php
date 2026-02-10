@@ -90,7 +90,7 @@ $user_course = $p['course'] ?? 'B.Tech';
                 ['name' => 'Sneha Patil', 'year' => '2nd Year', 'acc' => 'PG / Flat', 'img' => 'https://ui-avatars.com/api/?name=Sneha+Patil&background=random'],
                 ['name' => 'Rohan Mehta', 'year' => '3rd Year', 'acc' => 'Day Scholar', 'img' => 'https://ui-avatars.com/api/?name=Rohan+Mehta&background=random'],
                 ['name' => 'Esha Gupta', 'year' => '4th Year', 'acc' => 'Hostel', 'img' => 'https://ui-avatars.com/api/?name=Esha+Gupta&background=random'],
-                ['name' => 'Kabir Singh', 'year' => '1st Year', 'acc' => 'Hostel', 'img' => 'https://ui-avatars.com/api/?name=Kabir+Singh&background=random'],
+                ['name' => 'Yuvraj Bhati', 'year' => '4th Year', 'acc' => 'Hostel', 'img' => 'https://ui-avatars.com/api/?name=Yuvraj+Bhati&background=random'],
             ];
             foreach ($samples as $s):
             ?>

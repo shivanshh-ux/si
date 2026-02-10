@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onboarding - SI UNIVERSE</title>
+    <title>Onboarding - SIU UNIVERSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-lg flex items-center justify-center">
                 <i class="fas fa-graduation-cap text-white text-sm"></i>
             </div>
-            <span class="text-xl font-bold text-gray-800 tracking-tight">SI UNIVERSE</span>
+            <span class="text-xl font-bold text-gray-800 tracking-tight">SIU UNIVERSE</span>
         </div>
     </header>
 
@@ -138,7 +138,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">4</span>. Course & Section</h2>
                     <p class="text-gray-500 mb-6">Enter your course and select your section.</p>
                     <div class="space-y-4">
-                        <input type="text" name="course" placeholder="e.g. B.Tech Computer Science" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                        <input type="text" name="course" placeholder="e.g. B.Tech" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                         <input type="text" name="branch" placeholder="e.g. Computer Science" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
                         <select name="section" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
                             <option value="">-- Choose Section --</option>
                             <option value="Section A">Section A</option>
@@ -203,9 +204,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </label>
                     </div>
-                    <p id="intl-notice" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-sm italic">
+                    <!-- <p id="intl-notice" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg text-sm italic">
                         <i class="fas fa-info-circle mr-2"></i> You will be automatically added to the International Students Community!
-                    </p>
+                    </p> -->
                 </div>
 
                 <!-- Step 8: Password -->

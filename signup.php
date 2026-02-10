@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - SI UNIVERSE</title>
+    <title>Register - SIU UNIVERSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script>
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                 <i class="fas fa-user-plus text-3xl"></i>
             </div>
-            <h1 class="text-2xl font-bold">Join SI UNIVERSE</h1>
+            <h1 class="text-2xl font-bold">Join SIU UNIVERSE</h1>
             <p class="text-blue-100 mt-2">Create your account to connect</p>
         </div>
 

@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>SI UNIVERSE - Student Community Platform</title>
-    <meta name="description" content="SI UNIVERSE: Decide online. Meet offline. Verified student communities for SI students since 2026.">
+    <title>SIU UNIVERSE - Student Community Platform</title>
+    <meta name="description" content="SIU UNIVERSE: Decide online. Meet offline. Verified student communities for SI students since 2026.">
     <meta name="keywords" content="student community, SI University, hostel students, day scholars, PG students, academic resources, professional communities">
-    <meta name="author" content="SI UNIVERSE">
+    <meta name="author" content="SIU UNIVERSE">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://siuniverse.edu/">
-    <meta property="og:title" content="SI UNIVERSE - Student Community Platform">
+    <meta property="og:title" content="SIU UNIVERSE - Student Community Platform">
     <meta property="og:description" content="Decide online. Meet offline. Verified student communities for SI students since 2026.">
     <meta property="og:image" content="https://siuniverse.edu/assets/images/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large-image">
     <meta property="twitter:url" content="https://siuniverse.edu/">
-    <meta property="twitter:title" content="SI UNIVERSE - Student Community Platform">
+    <meta property="twitter:title" content="SIU UNIVERSE - Student Community Platform">
     <meta property="twitter:description" content="Decide online. Meet offline. Verified student communities for SI students since 2026.">
     <meta property="twitter:image" content="https://siuniverse.edu/assets/images/og-image.jpg">
     
@@ -67,7 +67,7 @@
                     <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
                         <i class="fas fa-graduation-cap text-white text-sm"></i>
                     </div>
-                    <span class="text-xl font-bold text-gray-800">SI UNIVERSE</span>
+                    <span class="text-xl font-bold text-gray-800">SIU UNIVERSE</span>
                     <span class="text-xs bg-accent text-white px-2 py-1 rounded-full">Est. 2026</span>
                 </a>
 

@@ -10,7 +10,7 @@
                         <div class="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
                             <i class="fas fa-graduation-cap text-white text-lg"></i>
                         </div>
-                        <span class="text-2xl font-bold">SI UNIVERSE</span>
+                        <span class="text-2xl font-bold">SIU UNIVERSE</span>
                     </div>
                     <p class="text-gray-400 mb-4">
                         Established in 2026. A verified student community platform for SI University students.
@@ -60,7 +60,7 @@
             <div class="border-t border-gray-800 mt-8 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-400 text-sm">
-                        © 2026 SI UNIVERSE. All rights reserved.
+                        © 2026 SIU UNIVERSE. All rights reserved.
                     </p>
                     <div class="flex space-x-4 mt-4 md:mt-0">
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">
