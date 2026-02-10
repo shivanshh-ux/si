@@ -31,7 +31,7 @@ $is_cr = false; // Mocking CR status
 </section>
 
 <!-- Access Control Info -->
-<?php if (!$is_cr): ?>
+<!--  <?php if (!$is_cr): ?> 
 <section class="py-4 bg-amber-50 border-y border-amber-100">
     <div class="container mx-auto px-4 text-center">
         <p class="text-amber-800 text-sm font-medium">
@@ -39,7 +39,7 @@ $is_cr = false; // Mocking CR status
         </p>
     </div>
 </section>
-<?php endif; ?>
+<?php endif; ?> -->
 
 <!-- Resources Section -->
 <section class="py-12 bg-gray-50">
@@ -51,6 +51,33 @@ $is_cr = false; // Mocking CR status
            <!-- ... CR upload form code ... -->
         </div>
         <?php endif; ?>
+        
+        <!-- Category Filters -->
+        <div class="mb-12 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+            <div class="flex items-center space-x-3 min-w-max">
+                <button class="bg-primary text-white px-6 py-2.5 rounded-full font-medium shadow-md shadow-primary/20 transition-all text-sm">
+                    All Resources
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+                    Attendance
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+                    Timetable
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+                    Assignments
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+                    Study Materials
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+                    Curriculum
+                </button>
+                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
+                    Holiday Schedule
+                </button>
+            </div>
+        </div>
         
         <!-- Resources Display -->
         <div class="py-20 text-center" data-aos="fade-up">
@@ -74,7 +101,7 @@ $is_cr = false; // Mocking CR status
 </section>
 
 <!-- Rules Section -->
-<section class="py-12 bg-white border-t border-gray-200">
+<!-- <section class="py-12 bg-white border-t border-gray-200">
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
             <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Resource Hub Rules</h3>
@@ -103,9 +130,9 @@ $is_cr = false; // Mocking CR status
                             <span>Official academic resources only</span>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 
-                <div class="bg-gray-50 rounded-xl p-6">
+                <!-- <div class="bg-gray-50 rounded-xl p-6">
                     <h4 class="font-bold text-gray-800 mb-3 flex items-center">
                         <i class="fas fa-eye text-secondary mr-2"></i>
                         Access Rules
@@ -132,6 +159,6 @@ $is_cr = false; // Mocking CR status
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <?php include 'includes/footer.php'; ?>

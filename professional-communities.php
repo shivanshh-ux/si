@@ -1,17 +1,21 @@
-<?php include 'includes/header.php'; ?>
+<?php
+session_start();
+
+include 'includes/header.php';
+?>
 
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-br from-accent/10 to-primary/10 py-20">
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                Professional community
+                Professional Communities
             </h1>
-            <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+            <!--0 <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
                 Network with peers, explore opportunities, and grow professionally. Same rules apply: WhatsApp groups for planning only.
             </p>
             
-            <!-- Stats -->
+            
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
                 <div class="bg-white rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-3xl font-bold text-primary count-up" data-count="8">0</div>
@@ -29,41 +33,41 @@
                     <div class="text-3xl font-bold text-green-600 count-up" data-count="89">0</div>
                     <div class="text-sm text-gray-600">Opportunities Posted</div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 
 <!-- Rules Banner -->
-<section class="py-4 bg-gradient-to-r from-primary to-accent text-white">
+<!-- <section class="py-4 bg-gradient-to-r from-primary to-accent text-white">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-6">
-            <div class="flex items-center">
+             <div class="flex items-center">
                 <i class="fas fa-exclamation-circle text-xl mr-2"></i>
                 <span class="font-semibold">Same Rules Apply:</span>
-            </div>
-            <div class="flex flex-wrap justify-center gap-2">
+            </div> -->
+             <!-- <div class="flex flex-wrap justify-center gap-2">
                 <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Predefined communities only</span>
                 <span class="bg-white/20 px-3 py-1 rounded-full text-sm">One WhatsApp group per community</span>
                 <span class="bg-white/20 px-3 py-1 rounded-full text-sm">No in-app chat</span>
                 <span class="bg-white/20 px-3 py-1 rounded-full text-sm">No member list display</span>
-            </div>
+            </div> 
         </div>
     </div>
-</section>
+</section> --> 
 <!-- Communities Grid -->
 <section class="py-16 sm:py-20 bg-gray-50">
   <div class="container mx-auto px-4">
 
     <!-- Header -->
-    <div class="text-center mb-12" data-aos="fade-up">
+    <!-- <div class="text-center mb-12" data-aos="fade-up">
       <h2 class="text-3xl font-bold text-gray-800 mb-4">
         Professional Communities
       </h2>
       <p class="text-gray-600 max-w-2xl mx-auto">
         Join these pre-approved professional communities to network and grow
       </p>
-    </div>
+    </div> -->
 
     <!-- MAIN GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

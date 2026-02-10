@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form id="onboardingForm" method="POST" action="">
                 <!-- Step 1: Accommodation -->
                 <div id="step1" class="p-8 step-content">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">1. Accommodation</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">1</span>. Accommodation</h2>
                     <p class="text-gray-500 mb-6">Where are you staying?</p>
                     
                     <div class="grid grid-cols-1 gap-4 mb-6">
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 2: Campus Location -->
                 <div id="step2" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">2. Campus Location</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">2</span>. Campus Location</h2>
                     <p class="text-gray-500 mb-6">Select your primary campus base.</p>
                     <div class="grid grid-cols-2 gap-4">
                         <label class="text-center p-6 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 3: Institute -->
                 <div id="step3" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">3. Institute</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">3</span>. Institute</h2>
                     <p class="text-gray-500 mb-6">Select your institute at SIU.</p>
                     <select name="institute" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
                         <option value="">-- Choose Institute --</option>
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 4: Course & Section -->
                 <div id="step4" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">4. Course & Section</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">4</span>. Course & Section</h2>
                     <p class="text-gray-500 mb-6">Enter your course and select your section.</p>
                     <div class="space-y-4">
                         <input type="text" name="course" placeholder="e.g. B.Tech Computer Science" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 5: Year -->
                 <div id="step5" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">5. Year</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">5</span>. Year</h2>
                     <p class="text-gray-500 mb-6">Select your current academic year.</p>
                     <div class="grid grid-cols-3 gap-4">
                         <?php foreach([1, 2, 3, 4] as $y): ?>
@@ -168,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 6: Gym -->
                 <div id="step6" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">6. Gym Choice</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">6</span>. Gym Choice</h2>
                     <p class="text-gray-500 mb-6">Which gym do you visit?</p>
                     <div class="space-y-3">
                         <?php 
@@ -185,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 7: Country -->
                 <div id="step7" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">7. Origin</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">7</span>. Origin</h2>
                     <p class="text-gray-500 mb-6">Where are you from?</p>
                     <div class="grid grid-cols-2 gap-4">
                         <label class="text-center p-8 border-2 border-gray-100 rounded-xl cursor-pointer hover:border-blue-500 transition-all">
@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Step 8: Password -->
                 <div id="step8" class="p-8 step-content hidden">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">8. Set Your Password</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">8</span>. Set Your Password</h2>
                     <p class="text-gray-500 mb-6">Create a secure password for your account.</p>
                     
                     <div class="space-y-4">
@@ -265,6 +265,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const tabs = document.getElementsByClassName("step-content");
             tabs[n-1].classList.remove("hidden");
             
+            // Calculate Display Step Number
+            const acc = document.querySelector('input[name="accommodation"]:checked');
+            const isHostel = acc && acc.value === "Hostel";
+            let displayStep = n;
+            let displayTotal = totalTabs;
+
+            if (!isHostel) {
+                if (n > 6) displayStep = n - 1;
+                displayTotal = totalTabs - 1;
+            }
+
+            const stepSpan = tabs[n-1].querySelector(".display-step");
+            if (stepSpan) stepSpan.innerText = displayStep;
+            
             // Buttons
             document.getElementById("prevBtn").disabled = (n === 1);
             if (n === totalTabs) {
@@ -274,7 +288,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Progress Bar
-            document.getElementById("progressBar").style.width = (n / totalTabs * 100) + "%";
+            document.getElementById("progressBar").style.width = (displayStep / displayTotal * 100) + "%";
         }
 
         function next(n) {
@@ -284,7 +298,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (n === 1 && !validateForm()) return false;
 
             tabs[currentTab-1].classList.add("hidden");
-            currentTab = currentTab + n;
+            
+            // Logic to skip Gym Choice (Step 6) if not a Hostel student
+            let targetTab = currentTab + n;
+            const acc = document.querySelector('input[name="accommodation"]:checked');
+            const isHostel = acc && acc.value === "Hostel";
+
+            if (targetTab === 6 && !isHostel) {
+                targetTab += n; // Skip 6, go to 7 (if forward) or 5 (if backward)
+            }
+
+            currentTab = targetTab;
 
             if (currentTab > totalTabs) {
                 document.getElementById("onboardingForm").submit();

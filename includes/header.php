@@ -94,8 +94,7 @@
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <div class="flex items-center space-x-4">
                             <a href="profile-page.php" class="text-gray-600 hover:text-primary transition-colors flex items-center">
-                                <i class="fas fa-user-circle text-2xl mr-2"></i>
-                                <span class="hidden lg:inline font-medium"><?php echo $_SESSION['user_name'] ?? 'Profile'; ?></span>
+                                <i class="fas fa-user-circle text-2xl"></i>
                             </a>
                         </div>
                     <?php else: ?>

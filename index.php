@@ -6,13 +6,13 @@ include 'includes/header.php';
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-primary/10 via-white to-accent/10">
-    <div class="container mx-auto px-4 py-20">
+    <div class="container mx-auto px-4 py-20 ">
         <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right">
-                <span class="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-4">
+            <!-- <div data-aos="fade-right"> -->
+                <!-- <span class="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-4">
                     Est. 2026
-                </span>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                </span> -->
+                <!-- <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                     Welcome to 
                     <span class="text-primary">SI UNIVERSE</span>
                 </h1>
@@ -22,12 +22,12 @@ include 'includes/header.php';
                 <div class="bg-yellow-50 border-l-4 border-accent p-4 mb-8">
                     <p class="text-gray-800 font-bold mb-2">Core Philosophy:</p>
                     <p class="text-gray-700">"Decide online. Meet offline. No random chatting. WhatsApp groups are only for planning time & place."</p>
-                </div>
+                </div> -->
                 <!-- <button onclick="showOnboardingModal()" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl font-semibold">
                     Get Started <i class="fas fa-arrow-right ml-2"></i>
                 </button> -->
-            </div>
-            <div data-aos="fade-left" class="relative">
+            <!-- </div> -->
+            <!-- <div data-aos="fade-left" class="relative"> -->
                 <div class="bg-white rounded-2xl shadow-2xl p-8">
                  <!-- <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                         <div class="bg-primary/10 p-4 rounded-xl text-center">
@@ -94,7 +94,7 @@ include 'includes/header.php';
                         </div>
 
                         <!-- Sports Community Card -->
-                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <!-- <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
                             <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-futbol text-blue-600"></i>
                             </div>
@@ -106,10 +106,10 @@ include 'includes/header.php';
                             <div class="text-gray-300 ml-2">
                                 <i class="fas fa-user-friends"></i>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Hometown City Card -->
-                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <!-- <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
                             <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-city text-green-600"></i>
                             </div>
@@ -121,10 +121,10 @@ include 'includes/header.php';
                             <div class="text-gray-300 ml-2">
                                 <i class="fas fa-user-friends"></i>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Native State Card -->
-                        <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
+                        <!-- <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center shadow-sm hover:shadow-md transition-all cursor-pointer">
                             <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-globe-asia text-blue-600"></i>
                             </div>
@@ -136,10 +136,10 @@ include 'includes/header.php';
                             <div class="text-gray-300 ml-2">
                                 <i class="fas fa-user-friends"></i>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
 </section>

@@ -15,7 +15,17 @@ $user_course = $p['course'] ?? 'B.Tech';
             <p class="text-gray-600 mb-8">Find students from your course or explore campus-wide groups.</p>
             
             <!-- Filters -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 text-left">
+            <div class="bg-white rounded-2xl shadow-xl p-10 mb-8 text-left">
+                <div class="mb-10 pt-0 border-t border-gray-50 flex items-center">
+                    <div class="relative flex-1 w-full">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="searchInput" placeholder="Search by name..." class="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-lg text-sm focus:ring-2 ring-primary/20 outline-none">
+                    </div>
+                    <div class="ml-4 flex bg-gray-100 p-1 rounded-lg">
+                        <button onclick="switchTab('peers')" id="tabPeers" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all bg-white shadow-sm text-primary">Peers</button>
+                    </div>
+                </div>
+                
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Institute</label>
@@ -49,16 +59,15 @@ $user_course = $p['course'] ?? 'B.Tech';
                         </select>
                     </div>
                 </div>
-                <div class="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between">
-                    <div class="relative flex-1 max-w-lg">
+                <!-- <div class="mt-4 pt-4 border-t border-gray-50 flex items-center">
+                    <div class="relative flex-1 w-full">
                         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="searchInput" placeholder="Search by name..." class="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-lg text-sm focus:ring-2 ring-primary/20 outline-none">
                     </div>
                     <div class="ml-4 flex bg-gray-100 p-1 rounded-lg">
                         <button onclick="switchTab('peers')" id="tabPeers" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all bg-white shadow-sm text-primary">Peers</button>
-                        <!-- <button onclick="switchTab('groups')" id="tabGroups" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all text-gray-500">Groups</button> -->
                     </div>
-                </div>
+                </div> -->
             </div>
             
             <div id="access-notice" class="bg-blue-50 border border-blue-100 p-3 rounded-xl inline-flex items-center text-xs text-blue-700">
