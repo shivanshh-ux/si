@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Onboarding - SIU UNIVERSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -226,8 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div id="password-requirements" class="mt-2 text-xs space-y-1 text-gray-500">
                                 <p id="req-length" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least 8 characters</p>
-                                <!-- <p id="req-number" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one number</p>
-                                <p id="req-special" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one special character</p> -->
+                                <p id="req-special" class="flex items-center"><i class="fas fa-circle text-[6px] mr-2"></i> At least one special character</p>
                             </div>
                         </div>
 
@@ -325,23 +326,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Step 1 extra validation for mess if Hostel
             if (currentTab === 1) {
                 const acc = document.querySelector('input[name="accommodation"]:checked');
-                if (!acc) { alert("Please select accommodation"); return false; }
+                if (!acc) { Swal.fire('Error', 'Please select accommodation', 'error'); return false; }
                 if (acc.value === "Hostel" && document.getElementById("messSelect").value === "") {
-                    alert("Please select your Mess"); return false;
+                    Swal.fire('Error', 'Please select your Mess', 'error'); return false;
                 }
             }
 
             if (currentTab === 3 && document.querySelector('select[name="institute"]').value === "") {
-                alert("Please select your Institute"); return false;
+                Swal.fire('Error', 'Please select your Institute', 'error'); return false;
             }
             
             if (currentTab === 4 && document.querySelector('input[name="course"]').value === "") {
-                alert("Please enter your course"); return false;
+                Swal.fire('Error', 'Please enter your course', 'error'); return false;
             }
 
             if (currentTab === 7) {
                 const country = document.querySelector('input[name="country"]:checked');
-                if (!country) { alert("Please select your origin"); return false; }
+                if (!country) { Swal.fire('Error', 'Please select your origin', 'error'); return false; }
             }
 
             // Step 8: Password Validation
@@ -350,19 +351,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 const confirmPassword = document.getElementById('confirm_password').value;
 
                 if (password.length < 8) {
-                    alert("Password must be at least 8 characters long");
-                    return false;
-                }
-                if (!/\d/.test(password)) {
-                    alert("Password must contain at least one number");
+                    Swal.fire('Error', 'Password must be at least 8 characters long', 'error');
                     return false;
                 }
                 if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-                    alert("Password must contain at least one special character");
+                    Swal.fire('Error', 'Password must contain at least one special character', 'error');
                     return false;
                 }
                 if (password !== confirmPassword) {
-                    alert("Passwords do not match");
+                    Swal.fire('Error', 'Passwords do not match', 'error');
                     return false;
                 }
             }
@@ -389,12 +386,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             const val = e.target.value;
             const reqs = {
                 length: val.length >= 8,
-                number: /\d/.test(val),
                 special: /[!@#$%^&*(),.?":{}|<>]/.test(val)
             };
 
             updateReq('req-length', reqs.length);
-            updateReq('req-number', reqs.number);
             updateReq('req-special', reqs.special);
         });
 

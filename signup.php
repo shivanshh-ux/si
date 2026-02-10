@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Register - SIU UNIVERSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -175,17 +177,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         document.getElementById('display-email').innerText = email;
                         goToStep(2);
                     } else {
-                        alert(data.message || "Failed to send verification code. Please try again.");
+                        Swal.fire('Failed', data.message || "Failed to send verification code. Please try again.", 'error');
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    alert("An error occurred. Please try again.");
+                    Swal.fire('Error', "An error occurred. Please try again.", 'error');
                 } finally {
                     nextBtn.disabled = false;
                     nextBtn.innerHTML = originalText;
                 }
             } else {
-                alert("Please enter a valid email address");
+                Swal.fire('Invalid Email', "Please enter a valid email address", 'warning');
             }
         }
 

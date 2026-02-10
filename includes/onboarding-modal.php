@@ -390,7 +390,7 @@
             // Check accommodation type
             const accommodation = document.querySelector('input[name="accommodation"]:checked');
             if (!accommodation) {
-                alert('Please select your accommodation type');
+                Swal.fire('Incomplete', 'Please select your accommodation type', 'warning');
                 return;
             }
             selectedAccommodation = accommodation.value;
