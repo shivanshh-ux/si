@@ -284,7 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Buttons
             document.getElementById("prevBtn").disabled = (n === 1);
             if (n === totalTabs) {
-                document.getElementById("nextBtn").innerHTML = "Finish Profile <i class='fas fa-check ml-1'></i>";
+                document.getElementById("nextBtn").innerHTML = "Enter Dashboard <i class='fas fa-check ml-1'></i>";
             } else {
                 document.getElementById("nextBtn").innerHTML = "Continue <i class='fas fa-chevron-right ml-1'></i>";
             }

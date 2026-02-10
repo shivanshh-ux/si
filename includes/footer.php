@@ -17,7 +17,7 @@
                     </p>
                     <div class="bg-gray-800 rounded-lg p-4 mb-4">
                         <p class="text-accent font-semibold mb-2">Core Philosophy:</p>
-                        <p class="text-gray-300">"Decide online. Meet offline. No random chatting."</p>
+                        <p class="text-gray-300">"Empowering SIU students to organize, collaborate, and grow together. A focused space for a purposeful student life."</p>
                     </div>
                 </div>
 
