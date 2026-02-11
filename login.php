@@ -18,7 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif (!empty($email) && $password === 'password') {
         $_SESSION['user_id'] = 1;
         $_SESSION['user_name'] = explode('@', $email)[0];
-        header("Location: index.php");
+        
+        $redirect = $_GET['redirect'] ?? 'index.php';
+        header("Location: $redirect");
         exit();
     } else {
         $error = "Invalid credentials. Use 'password' for testing.";

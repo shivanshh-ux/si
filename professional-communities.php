@@ -11,12 +11,12 @@ include 'includes/header.php';
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                 Professional Communities
             </h1>
-            <!--0 <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-                Network with peers, explore opportunities, and grow professionally. Same rules apply: WhatsApp groups for planning only.
-            </p>
+            <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                Network with peers, explore opportunities & grow professionally.
+            </p> 
             
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
+            <!-- <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
                 <div class="bg-white rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-3xl font-bold text-primary count-up" data-count="8">0</div>
                     <div class="text-sm text-gray-600">Professional Groups</div>
@@ -32,8 +32,8 @@ include 'includes/header.php';
                 <div class="bg-white rounded-xl p-6 shadow-lg" data-aos="fade-up" data-aos-delay="250">
                     <div class="text-3xl font-bold text-green-600 count-up" data-count="89">0</div>
                     <div class="text-sm text-gray-600">Opportunities Posted</div>
-                </div>
-            </div> -->
+                </div> -->
+            </div> 
         </div>
     </div>
 </section>

@@ -141,7 +141,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="text-gray-500 mb-6">Enter your course and select your section.</p>
                     <div class="space-y-4">
                         <input type="text" name="course" placeholder="e.g. B.Tech" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                         <input type="text" name="branch" placeholder="e.g. Computer Science" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                        <div class="relative">
+                            <input type="text" name="branch" placeholder="e.g. Computer Science (Optional)" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                            <p class="text-xs text-gray-400 mt-1 ml-1">Leave blank if not applicable</p>
+                        </div>
                         <select name="section" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
                             <option value="">-- Choose Section --</option>
                             <option value="Section A">Section A</option>
@@ -336,8 +339,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 Swal.fire('Error', 'Please select your Institute', 'error'); return false;
             }
             
-            if (currentTab === 4 && document.querySelector('input[name="course"]').value === "") {
-                Swal.fire('Error', 'Please enter your course', 'error'); return false;
+            if (currentTab === 4) {
+                if (document.querySelector('input[name="course"]').value.trim() === "") {
+                    Swal.fire('Error', 'Please enter your course', 'error'); 
+                    return false;
+                }
+                if (document.querySelector('select[name="section"]').value === "") {
+                    Swal.fire('Error', 'Please select your section', 'error'); 
+                    return false;
+                }
             }
 
             if (currentTab === 7) {

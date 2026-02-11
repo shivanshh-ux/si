@@ -12,16 +12,16 @@ $user_course = $p['course'] ?? 'B.Tech';
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">Discover Peers & Communities</h1>
-            <p class="text-gray-600 mb-8">Find students from your course or explore campus-wide groups.</p>
+            <p class="text-gray-600 mb-8">Find students from your institute or explore campus-wide groups.</p>
             
             <!-- Filters -->
             <div class="bg-white rounded-2xl shadow-xl p-10 mb-8 text-left">
-                <div class="mb-10 pt-0 border-t border-gray-50 flex items-center">
+                <div class="mb-10 pt-0 border-t border-gray-50 flex flex-col md:flex-row items-center gap-4 md:gap-0">
                     <div class="relative flex-1 w-full">
                         <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="searchInput" placeholder="Search by name..." class="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-lg text-sm focus:ring-2 ring-primary/20 outline-none">
                     </div>
-                    <div class="ml-4 flex bg-gray-100 p-1 rounded-lg">
+                    <div class="w-full md:w-auto md:ml-4 flex justify-center bg-gray-100 p-1 rounded-lg">
                         <button onclick="switchTab('peers')" id="tabPeers" class="px-4 py-1.5 rounded-md text-sm font-bold transition-all bg-white shadow-sm text-primary">Peers</button>
                     </div>
                 </div>

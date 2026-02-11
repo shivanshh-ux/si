@@ -95,7 +95,12 @@
                     
                     <!-- Login Button / Profile Icon -->
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-6">
+                            <?php if ($_SESSION['user_id'] == 1): ?>
+                                <a href="admin/index.php" class="text-secondary hover:text-primary transition-colors font-bold text-sm bg-blue-50 px-3 py-1.5 rounded-lg flex items-center">
+                                    <i class="fas fa-shield-alt mr-2"></i> Admin
+                                </a>
+                            <?php endif; ?>
                             <a href="profile-page.php" class="text-gray-600 hover:text-primary transition-colors flex items-center">
                                 <i class="fas fa-user-circle text-2xl"></i>
                             </a>
