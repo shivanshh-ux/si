@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="hidden" name="skip_details" id="skip_details" value="false">
                 
                 <!-- STEP 1: Email -->
-                <div id="step-1">
+                <div id="step-1" class="<?php echo (isset($_POST['otp']) && isset($error)) ? 'hidden' : ''; ?>">
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-semibold mb-2" for="email">
                             SI Email Address
@@ -103,7 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <i class="fas fa-envelope text-gray-400"></i>
                             </div>
                             <input class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors" 
-                                   id="email" type="email" name="email" placeholder="student@si.edu" required>
+                                   id="email" type="email" name="email" placeholder="student@siu.edu.in" 
+                                   value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
                         </div>
                     </div>
                     <button type="button" onclick="verifyEmailStep()" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition-all shadow-lg">
@@ -115,20 +116,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <!-- STEP 2: OTP -->
-                <div id="step-2" class="hidden">
+                <div id="step-2" class="<?php echo (isset($_POST['otp']) && isset($error)) ? '' : 'hidden'; ?>">
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-semibold mb-2" for="otp">
                             Verification Code
                         </label>
-                        <p class="text-xs text-gray-500 mb-3">Sent to <span id="display-email" class="font-bold text-gray-700"></span></p>
+                        <p class="text-xs text-gray-500 mb-3">Sent to <span id="display-email" class="font-bold text-gray-700"><?php echo htmlspecialchars($_POST['email'] ?? ''); ?></span></p>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-key text-gray-400"></i>
                             </div>
                             <input class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors tracking-widest text-lg" 
-                                   id="otp" name="otp" type="text" placeholder="Enter 6-digit code" maxlength="6">
+                                   id="otp" name="otp" type="text" placeholder="Enter 6-digit code" maxlength="6"
+                                   value="<?php echo htmlspecialchars($_POST['otp'] ?? ''); ?>">
                         </div>
-                        <p id="otp-error" class="text-red-500 text-xs mt-2 hidden">Invalid OTP. Please check your email.</p>
+                        <p id="otp-error" class="text-red-500 text-xs mt-2 <?php echo isset($error) ? '' : 'hidden'; ?>">
+                            <?php echo isset($error) ? $error : 'Invalid OTP. Please check your email.'; ?>
+                        </p>
                     </div>
                     <button type="button" onclick="verifyOtpStep()" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition-all shadow-lg">
                         Verify Email
@@ -205,6 +209,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 document.getElementById('otp-error').classList.remove('hidden');
             }
         }
+
+        // Allow Enter key to submit OTP
+        document.getElementById('otp').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                verifyOtpStep();
+            }
+        });
     </script>
 </body>
 </html>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'country' => $_POST['country'] ?? '',
         'international_student' => ($_POST['country'] === 'Other') ? true : false,
     ];
-    header("Location: index.php");
+    header("Location: dashboard.php");
     exit();
 }
 ?>
@@ -140,18 +140,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2 class="text-2xl font-bold text-gray-800 mb-2"><span class="display-step">4</span>. Course & Section</h2>
                     <p class="text-gray-500 mb-6">Enter your course and select your section.</p>
                     <div class="space-y-4">
-                        <input type="text" name="course" placeholder="e.g. B.Tech" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                        <div class="relative">
-                            <input type="text" name="branch" placeholder="e.g. Computer Science (Optional)" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                            <p class="text-xs text-gray-400 mt-1 ml-1">Leave blank if not applicable</p>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 ml-1">Course <span class="text-red-500">*</span></label>
+                            <input type="text" name="course" placeholder="Enter Your Branch Name" class="w-full p-3 md:p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-base md:text-lg">
                         </div>
-                        <select name="section" class="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                            <option value="">-- Choose Section --</option>
-                            <option value="Section A">Section A</option>
-                            <option value="Section B">Section B</option>
-                            <option value="Section C">Section C</option>
-                            <option value="Section D">Section D</option>
-                        </select>
+                        
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 ml-1">Branch <span class="text-gray-400 font-normal">(Optional)</span></label>
+                            <input type="text" name="branch" placeholder="e.g. Computer Science" class="w-full p-3 md:p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-base md:text-lg">
+                            <p class="text-[10px] text-gray-400 mt-1 ml-1">Leave empty if not applicable</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 ml-1">Section <span class="text-red-500">*</span></label>
+                            <select name="section" class="w-full p-3 md:p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-base md:text-lg bg-white">
+                                <option value="">-- Choose Section --</option>
+                                <option value="Section A">Section A</option>
+                                <option value="Section B">Section B</option>
+                                <option value="Section C">Section C</option>
+                                <option value="Section D">Section D</option>    
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -287,7 +296,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Buttons
             document.getElementById("prevBtn").disabled = (n === 1);
             if (n === totalTabs) {
-                document.getElementById("nextBtn").innerHTML = "Enter Dashboard <i class='fas fa-check ml-1'></i>";
+                document.getElementById("nextBtn").innerHTML = "Finish Setup <i class='fas fa-check ml-1'></i>";
             } else {
                 document.getElementById("nextBtn").innerHTML = "Continue <i class='fas fa-chevron-right ml-1'></i>";
             }
@@ -301,24 +310,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Validation (simplified)
             if (n === 1 && !validateForm()) return false;
-
-            tabs[currentTab-1].classList.add("hidden");
             
-            // Logic to skip Gym Choice (Step 6) if not a Hostel student
+            // Calculate target tab first
             let targetTab = currentTab + n;
             const acc = document.querySelector('input[name="accommodation"]:checked');
             const isHostel = acc && acc.value === "Hostel";
 
+            // Logic to skip Gym Choice (Step 6) if not a Hostel student
             if (targetTab === 6 && !isHostel) {
                 targetTab += n; // Skip 6, go to 7 (if forward) or 5 (if backward)
             }
 
-            currentTab = targetTab;
-
-            if (currentTab > totalTabs) {
+            // Check if we are finishing
+            if (targetTab > totalTabs) {
+                const btn = document.getElementById("nextBtn");
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Setting up...';
+                btn.disabled = true;
                 document.getElementById("onboardingForm").submit();
                 return false;
             }
+
+            // Proceed to next tab
+            tabs[currentTab-1].classList.add("hidden");
+            currentTab = targetTab;
             showTab(currentTab);
         }
 
@@ -340,13 +354,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             
             if (currentTab === 4) {
-                if (document.querySelector('input[name="course"]').value.trim() === "") {
-                    Swal.fire('Error', 'Please enter your course', 'error'); 
-                    return false;
+                const course = document.querySelector('input[name="course"]').value;
+                const section = document.querySelector('select[name="section"]').value;
+                
+                if (course === "") {
+                    Swal.fire('Error', 'Please enter your course', 'error'); return false;
                 }
-                if (document.querySelector('select[name="section"]').value === "") {
-                    Swal.fire('Error', 'Please select your section', 'error'); 
-                    return false;
+                if (section === "") {
+                    Swal.fire('Error', 'Please select your section', 'error'); return false;
                 }
             }
 
