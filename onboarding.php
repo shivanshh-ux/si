@@ -349,6 +349,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
+            // Step 2: Campus Validation
+            if (currentTab === 2) {
+                const campus = document.querySelector('input[name="campus"]:checked');
+                if (!campus) { Swal.fire('Error', 'Please select your campus location', 'error'); return false; }
+            }
+
             if (currentTab === 3 && document.querySelector('select[name="institute"]').value === "") {
                 Swal.fire('Error', 'Please select your Institute', 'error'); return false;
             }
@@ -363,6 +369,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (section === "") {
                     Swal.fire('Error', 'Please select your section', 'error'); return false;
                 }
+            }
+
+            // Step 5: Year Validation
+            if (currentTab === 5) {
+                const year = document.querySelector('input[name="year"]:checked');
+                if (!year) { Swal.fire('Error', 'Please select your academic year', 'error'); return false; }
             }
 
             if (currentTab === 7) {
