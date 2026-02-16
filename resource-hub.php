@@ -1,159 +1,136 @@
 <?php
 session_start();
-
 include 'includes/header.php';
-$p = $_SESSION['onboarding_data'] ?? null;
-$user_inst = $p['institute'] ?? 'SIT';
-$user_course = $p['course'] ?? 'B.Tech';
-$user_sec = $p['section'] ?? 'Section A';
-$is_cr = false; // Mocking CR status
+
+$pg_listings = [
+    [
+        'name' => 'Malti kunj Pg',
+        'image' => 'https://placehold.co/600x400?text=Malti+Kunj+PG', // Placeholder
+        'website' => '#',
+        'rent' => '₹8,000/month',
+        'food' => '3 times/day (Veg/Non-Veg)',
+        'laundry' => 'Available',
+        'wifi' => 'High-speed Wi-Fi',
+        'rules' => [
+            'Opposite genders allowed',
+            'In time: 10:00 PM',
+            'Friends can come at pg anytime'
+        ]
+    ],
+    [
+        'name' => 'Yukio Pg',
+        'image' => 'https://placehold.co/600x400?text=Yukio+PG', // Placeholder
+        'website' => '#',
+        'rent' => '₹9,500/month',
+        'food' => '3 times/day (Veg)',
+        'laundry' => 'Machine Available',
+        'wifi' => 'Included',
+        'rules' => [
+            'No opposite genders in rooms',
+            'In time: 11:00 PM',
+            'No loud music after 10 PM'
+        ]
+    ],
+    [
+        'name' => 'Sunshine Residency',
+        'image' => 'https://placehold.co/600x400?text=Sunshine+Residency', // Placeholder
+        'website' => '#',
+        'rent' => '₹12,000/month',
+        'food' => 'Breakfast & Dinner',
+        'laundry' => 'On-site washer',
+        'wifi' => 'Fiber Optic',
+        'rules' => [
+            'Opposite genders allowed in common area',
+            'No restriction on in-time',
+            'Overnight guests with prior notice'
+        ]
+    ],
+    [
+        'name' => 'Stanza Living',
+        'image' => 'https://placehold.co/600x400?text=Stanza+Living', // Placeholder
+        'website' => '#',
+        'rent' => '₹15,000/month',
+        'food' => 'All meals included',
+        'laundry' => 'Daily Service',
+        'wifi' => 'High-speed dedicated',
+        'rules' => [
+            'Biometric entry',
+            'In time: 10:30 PM',
+            'Strict no-alcohol policy'
+        ]
+    ]
+];
+
 ?>
 
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-secondary/10 to-primary/10 py-12">
+<section class="bg-gradient-900 pt-4 pb-12">
     <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-            <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                <i class="fas fa-lock text-primary"></i>
-                <span class="text-gray-700 font-medium">Access Controlled: <?= $user_inst ?> - <?= $user_course ?> Only</span>
-            </div>
-            <h1 class="text-4xl font-bold text-gray-800 mb-6">Resource Hub</h1>
-            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Official academic resources for your course and section. Read-only for students.
-            </p>
-            
-            <div class="bg-blue-50 border border-blue-100 p-4 rounded-2xl inline-flex flex-col items-center">
-                <span class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-1">Your Access Layer</span>
-                <span class="text-lg font-bold text-blue-800"><?= $user_course ?> (<?= $user_sec ?>)</span>
-            </div>
-        </div>
-    </div>
-</section>
+        <h1 class="text-4xl font-bold text-gray-800 text-center mb-2" data-aos="fade-up">PG Listings</h1>
+        <p class="text-gray-400 text-center mb-8" data-aos="fade-up" data-aos-delay="100">Find your home away from home.</p>
 
-<!-- Access Control Info -->
-<!--  <?php if (!$is_cr): ?> 
-<section class="py-4 bg-amber-50 border-y border-amber-100">
-    <div class="container mx-auto px-4 text-center">
-        <p class="text-amber-800 text-sm font-medium">
-            <i class="fas fa-info-circle mr-2"></i> Only Class Representatives can upload. You have <strong>View-Only</strong> access.
-        </p>
-    </div>
-</section>
-<?php endif; ?> -->
+        <div class="grid gap-8 max-w-5xl mx-auto">
+            <?php foreach ($pg_listings as $index => $pg): ?>
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100" data-aos="fade-up" data-aos-delay="<?= $index * 100 ?>">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Left Side: Photo and Website Link -->
+                        <div class="md:w-1/3 p-4 flex flex-col space-y-4">
+                            <div class="aspect-w-16 aspect-h-12 rounded-xl overflow-hidden bg-gray-200">
+                                <img src="<?= $pg['image'] ?>" alt="<?= $pg['name'] ?>" class="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <a href="<?= $pg['website'] ?>" target="_blank" class="block w-full text-center bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium py-2 rounded-lg border border-gray-200 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i> Visit Website
+                            </a>
+                        </div>
 
-<!-- Resources Section -->
-<section class="py-12 bg-gray-50">
-    <div class="container mx-auto px-4">
-        
-        <?php if ($is_cr): ?>
-        <!-- Upload Section (CR Only) -->
-        <div class="mb-12">
-           <!-- ... CR upload form code ... -->
-        </div>
-        <?php endif; ?>
-        
-        <!-- Category Filters -->
-        <div class="mb-12 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
-            <div class="flex items-center space-x-3 min-w-max">
-                <!-- <button class="bg-primary text-white px-6 py-2.5 rounded-full font-medium shadow-md shadow-primary/20 transition-all text-sm">
-                    All Resources
-                </button> -->
-                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Timetable
-                </button>
-                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Syllabus
-                </button>
-                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Curriculum
-                </button>
-                <button class="bg-white text-gray-600 border border-gray-200 px-6 py-2.5 rounded-full font-medium hover:border-primary hover:text-primary transition-all text-sm shadow-sm">
-                    Holiday Schedule
-                </button>
-                    
-            </div>
-        </div>
-        
-        <!-- Resources Display -->
-        <div class="py-20 text-center" data-aos="fade-up">
-            <div class="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                <i class="fas fa-folder-open text-gray-300 text-5xl"></i>
-            </div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">No resources yet</h2>
-            <p class="text-gray-500 max-w-md mx-auto text-lg">
-                Your Class Representative hasn't uploaded any academic resources for <?= $user_course ?> (<?= $user_sec ?>) yet.
-            </p>
-            <?php if ($is_cr): ?>
-            <div class="mt-8">
-                <p class="text-primary font-medium mb-4">As a CR, you can be the first to share!</p>
-                <button class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:shadow-lg transition-all">
-                    <i class="fas fa-plus mr-2"></i> Upload First Resource
-                </button>
-            </div>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
+                        <!-- Right Side: Details -->
+                        <div class="md:w-2/3 p-6 md:pl-0 flex flex-col justify-center">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4"><?= $pg['name'] ?></h2>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-6">
+                                <div class="flex items-center text-gray-600">
+                                    <div class="w-8 flex justify-center mr-3">
+                                        <i class="fas fa-rupee-sign text-green-500 text-lg"></i>
+                                    </div>
+                                    <span class="font-medium">Rent:</span> &nbsp;<?= $pg['rent'] ?>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <div class="w-8 flex justify-center mr-3">
+                                        <i class="fas fa-utensils text-orange-400 text-lg"></i>
+                                    </div>
+                                    <span class="font-medium">Food:</span> &nbsp;<?= $pg['food'] ?>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <div class="w-8 flex justify-center mr-3">
+                                        <i class="fas fa-tshirt text-blue-400 text-lg"></i>
+                                    </div>
+                                    <span class="font-medium">Laundry:</span> &nbsp;<?= $pg['laundry'] ?>
+                                </div>
+                                <div class="flex items-center text-gray-600">
+                                    <div class="w-8 flex justify-center mr-3">
+                                        <i class="fas fa-wifi text-indigo-500 text-lg"></i>
+                                    </div>
+                                    <span class="font-medium">Wi-Fi:</span> &nbsp;<?= $pg['wifi'] ?>
+                                </div>
+                            </div>
 
-<!-- Rules Section -->
-<!-- <section class="py-12 bg-white border-t border-gray-200">
-    <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Resource Hub Rules</h3>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-gray-50 rounded-xl p-6">
-                    <h4 class="font-bold text-gray-800 mb-3 flex items-center">
-                        <i class="fas fa-upload text-primary mr-2"></i>
-                        Upload Rules
-                    </h4>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Only Class Representatives can upload</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Allowed: PDF and Images only</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Max file size: 10MB per upload</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Official academic resources only</span>
-                        </li>
-                    </ul>
-                </div> -->
-                
-                <!-- <div class="bg-gray-50 rounded-xl p-6">
-                    <h4 class="font-bold text-gray-800 mb-3 flex items-center">
-                        <i class="fas fa-eye text-secondary mr-2"></i>
-                        Access Rules
-                    </h4>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Students see only their course resources</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>No cross-course sharing allowed</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Same course + same section → shared resources</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                            <span>Resources are class-level, not user-specific</span>
-                        </li>
-                    </ul>
+                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                                <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Rules & Regulations</h3>
+                                <ul class="space-y-2">
+                                    <?php foreach ($pg['rules'] as $rule): ?>
+                                        <li class="flex items-start text-gray-600 text-sm">
+                                            <i class="fas fa-check-circle text-primary mt-0.5 mr-2.5"></i>
+                                            <span><?= $rule ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
-</section> -->
+</section>
 
 <?php include 'includes/footer.php'; ?>
