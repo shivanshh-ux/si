@@ -93,8 +93,8 @@ $pg_listings = [
 ?>
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-br from-indigo-950 via-blue-900 to-indigo-900 pt-8 pb-12 min-h-screen">
-    <div class="container mx-auto px-4">
+<section class="pt-8 pb-12">
+    <div class="container mx-auto px-4 pb-8">
         <h1 class="text-4xl font-bold text-white text-center mb-2" data-aos="fade-up">Explore Stays</h1>
         <p class="text-gray-400 text-center mb-8" data-aos="fade-up" data-aos-delay="100">Find the best PGs & Flats near your college</p>
 
@@ -102,8 +102,7 @@ $pg_listings = [
         <div class="max-w-4xl mx-auto mb-10 bg-white/10 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/10 flex flex-col md:flex-row gap-4 items-center justify-between" data-aos="fade-up" data-aos-delay="200">
             <!-- Type Filter -->
             <div class="flex bg-black/20 rounded-lg p-1">
-                <button class="filter-btn active px-6 py-2 rounded-md font-bold transition-all text-white bg-primary" data-filter="all">All</button>
-                <button class="filter-btn px-6 py-2 rounded-md font-bold text-blue-100 hover:text-white transition-all" data-filter="PG">PGs</button>
+                <button class="filter-btn active px-6 py-2 rounded-md font-bold transition-all text-white bg-primary" data-filter="PG">PGs</button>
                 <button class="filter-btn px-6 py-2 rounded-md font-bold text-blue-100 hover:text-white transition-all" data-filter="Flat">Flats</button>
             </div>
 
@@ -231,13 +230,51 @@ $pg_listings = [
 </section>
 
 <style>
-    /* Ensure the body background matches the theme to prevent white gaps */
-    body {
-        background-color: #030712; /* Matches indigo-950 */
+    /* 
+       AGGRESSIVE LAYOUT FIX 
+       1. Force page background to a seamless gradient
+       2. Remove all theme-level margins and paddings that create gaps
+    */
+    html, body {
+        background: radial-gradient(circle at top right, #1e1b4b, #030712) fixed !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
     }
-    /* Override global footer margin for this page only */
+
+    main {
+        flex: 1 0 auto;
+        padding-top: 64px !important; /* Space for fixed header */
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+        background: transparent !important;
+    }
+
+    /* Remove the 'black space' between section and footer */
+    section {
+        margin-bottom: 0 !important;
+        padding-bottom: 2rem !important;
+    }
+
+    #listingsContainer {
+        margin-bottom: 0 !important;
+    }
+
+    /* Ensure footer is tucked right under the section */
     footer {
+        flex-shrink: 0;
         margin-top: 0 !important;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        background-color: rgba(0,0,0,0.3) !important;
+        backdrop-blur-md: 10px;
+    }
+
+    /* Fixed header adjustment */
+    nav {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px);
     }
 </style>
 
@@ -249,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const listings = document.querySelectorAll('.listing-card');
     const noResults = document.getElementById('noResults');
 
-    let currentType = 'all';
+    let currentType = 'PG';
     let maxDistance = 100;
 
     // Type Filter Logic
@@ -274,6 +311,9 @@ document.addEventListener('DOMContentLoaded', function() {
         maxDistance = parseFloat(e.target.value);
         filterListings();
     });
+
+    // Run initial filter
+    filterListings();
 
     function filterListings() {
         let visibleCount = 0;

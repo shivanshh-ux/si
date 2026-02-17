@@ -81,7 +81,7 @@
                     $pages = [
                         'index.php' => ['name' => 'Home', 'icon' => 'fa-home'],
                         'discover.php' => ['name' => 'Discover', 'icon' => 'fa-search'],
-                        'resource-hub.php' => ['name' => 'Explore Stays', 'icon' => 'fa-house-user'],
+                        'explore-stays.php' => ['name' => 'Explore Stays', 'icon' => 'fa-house-user'],
                         'professional-communities.php' => ['name' => 'Professional', 'icon' => 'fa-briefcase']
                     ];
                     
