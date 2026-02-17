@@ -32,7 +32,7 @@ $is_intl = $p['international_student'] ?? false;
             <!-- Right Column: Your Communities -->
             <div data-aos="fade-left" class="space-y-6">
                 <div class="mb-2">
-                    <h2 class="text-2xl font-bold text-gray-800">Your Communities (WhatsApp Groups)</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">Your Communities</h2>
                     <p class="text-sm text-gray-500">Based on your profile, here are the groups you belong to.</p>
                 </div>
 
