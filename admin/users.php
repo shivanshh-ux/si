@@ -35,8 +35,16 @@ $users = [
                 <p class="text-slate-500 text-sm">Review, verify, and manage all registered student accounts.</p>
             </div>
             <div class="flex items-center space-x-4">
+                <div class="hidden lg:flex items-center bg-white border border-slate-200 rounded-xl px-4 py-2 shadow-sm focus-within:border-blue-500 transition-all">
+                    <i class="fas fa-id-card text-slate-400 mr-2 text-xs"></i>
+                    <input type="text" id="quick-verify-input" placeholder="Enter PRN to verify..." class="text-sm focus:outline-none w-40">
+                    <button onclick="quickVerifyUser()" class="ml-2 text-blue-600 hover:text-blue-700">
+                        <i class="fas fa-check-circle"></i>
+                    </button>
+                </div>
+                <div class="h-8 w-px bg-slate-200 mx-1 hidden lg:block"></div>
                 <div class="relative">
-                    <input type="text" placeholder="Search users..." class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all w-64 shadow-sm">
+                    <input type="text" placeholder="Search users..." class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all w-48 shadow-sm">
                     <i class="fas fa-search absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
                 </div>
                 <button onclick="addUser()" class="bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 flex items-center">
@@ -94,7 +102,12 @@ $users = [
                             </td>
                             <td class="px-6 py-5">
                                 <div class="flex items-center space-x-2">
-                                    <button onclick="editUser('<?php echo $user['name']; ?>')" title="Edit" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                                    <?php if ($user['status'] == 'Pending'): ?>
+                                    <button onclick="verifyUser('<?php echo $user['name']; ?>')" title="Verify User" class="w-8 h-8 rounded-lg bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all">
+                                        <i class="fas fa-check text-xs"></i>
+                                    </button>
+                                    <?php endif; ?>
+                                    <button onclick="editUser(<?php echo htmlspecialchars(json_encode($user)); ?>)" title="Edit" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
                                         <i class="fas fa-edit text-xs"></i>
                                     </button>
                                     <button onclick="deleteUser('<?php echo $user['name']; ?>')" title="Delete" class="w-8 h-8 rounded-lg bg-slate-100 text-red-500 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all">
@@ -126,11 +139,29 @@ $users = [
             Swal.fire({
                 title: 'Add New Student',
                 html: `
-                    <div class="text-left">
-                        <label class="block text-xs font-bold text-slate-500 mb-1">Full Name</label>
-                        <input id="swal-input1" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none mb-4" placeholder="e.g. John Doe">
-                        <label class="block text-xs font-bold text-slate-500 mb-1">SIU Email</label>
-                        <input id="swal-input2" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" placeholder="e.g. john.doe@siu.edu.in">
+                    <div class="text-left space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Full Name</label>
+                            <input id="swal-input1" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" placeholder="e.g. John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">SIU Email</label>
+                            <input id="swal-input2" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" placeholder="e.g. john.doe@siu.edu.in">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 mb-1">College</label>
+                                <select id="swal-input3" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none bg-white">
+                                    <option>SIT Pune</option>
+                                    <option>SIBM Pune</option>
+                                    <option>SID Pune</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 mb-1">Section</label>
+                                <input id="swal-input4" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" placeholder="A, B, C or CR">
+                            </div>
+                        </div>
                     </div>
                 `,
                 showCancelButton: true,
@@ -138,10 +169,12 @@ $users = [
                 confirmButtonText: 'Create Account',
                 focusConfirm: false,
                 preConfirm: () => {
-                    return [
-                        document.getElementById('swal-input1').value,
-                        document.getElementById('swal-input2').value
-                    ]
+                    return {
+                        name: document.getElementById('swal-input1').value,
+                        email: document.getElementById('swal-input2').value,
+                        college: document.getElementById('swal-input3').value,
+                        section: document.getElementById('swal-input4').value
+                    }
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -150,20 +183,90 @@ $users = [
             });
         }
 
-        function editUser(name) {
+        function editUser(user) {
             Swal.fire({
-                title: 'Edit User',
-                text: "Editing details for " + name,
-                icon: 'info',
-                input: 'text',
-                inputLabel: 'Full Name',
-                inputValue: name,
+                title: 'Edit User Profile',
+                html: `
+                    <div class="text-left space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Full Name</label>
+                            <input id="swal-edit-1" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" value="${user.name}">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">SIU Email</label>
+                            <input id="swal-edit-2" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" value="${user.email}">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 mb-1">Course</label>
+                                <input id="swal-edit-3" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" value="${user.course}">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-500 mb-1">Section</label>
+                                <input id="swal-edit-4" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" value="${user.section}">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Verification Status</label>
+                            <select id="swal-edit-5" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none bg-white">
+                                <option value="Verified" ${user.status === 'Verified' ? 'selected' : ''}>Verified</option>
+                                <option value="Pending" ${user.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            </select>
+                        </div>
+                    </div>
+                `,
                 showCancelButton: true,
                 confirmButtonColor: '#2563eb',
-                confirmButtonText: 'Update'
+                confirmButtonText: 'Save Changes',
+                focusConfirm: false,
+                preConfirm: () => {
+                    return {
+                        name: document.getElementById('swal-edit-1').value,
+                        email: document.getElementById('swal-edit-2').value,
+                        course: document.getElementById('swal-edit-3').value,
+                        section: document.getElementById('swal-edit-4').value,
+                        status: document.getElementById('swal-edit-5').value
+                    }
+                }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire('Updated!', name + ' has been updated.', 'success');
+                    Swal.fire('Updated!', 'User profiles details updated (Mocked).', 'success');
+                }
+            });
+        }
+
+        function verifyUser(name) {
+            Swal.fire({
+                title: 'Verify Account?',
+                text: `Are you sure you want to verify ${name}?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#16a34a',
+                confirmButtonText: 'Yes, Verify'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Verified!', 'The student has been verified.', 'success');
+                }
+            });
+        }
+
+        function quickVerifyUser() {
+            const prn = document.getElementById('quick-verify-input').value;
+            if (!prn) {
+                Swal.fire('Error', 'Please enter a PRN or Email.', 'error');
+                return;
+            }
+            
+            Swal.fire({
+                title: 'User Identified',
+                text: `Found user for PRN: ${prn}. Proceed with verification?`,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Verify Now'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Verified!', 'The account is now active.', 'success');
+                    document.getElementById('quick-verify-input').value = '';
                 }
             });
         }

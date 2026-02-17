@@ -33,9 +33,18 @@ $communities = [
                 <h1 class="text-2xl font-bold text-slate-800">WhatsApp Communities</h1>
                 <p class="text-slate-500 text-sm">Manage verified WhatsApp group links and community categories.</p>
             </div>
-            <button onclick="addCommunity()" class="bg-green-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-green-700 transition-all shadow-lg shadow-green-500/20 flex items-center">
-                <i class="fas fa-plus mr-2"></i> Create New Group
-            </button>
+            <div class="flex items-center space-x-3">
+                <div class="hidden md:flex items-center bg-white border border-slate-200 rounded-xl px-4 py-2 shadow-sm focus-within:border-green-500 transition-all">
+                    <i class="fas fa-link text-slate-400 mr-2 text-xs"></i>
+                    <input type="text" id="quick-link-input" placeholder="Paste link to add..." class="text-sm focus:outline-none w-48">
+                    <button onclick="quickAddLink()" class="ml-2 text-green-600 hover:text-green-700">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <button onclick="addCommunity()" class="bg-green-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-green-700 transition-all shadow-lg shadow-green-500/20 flex items-center">
+                    <i class="fas fa-plus mr-2"></i> Create New Group
+                </button>
+            </div>
         </header>
 
         <!-- Communities Grid -->
@@ -47,7 +56,7 @@ $communities = [
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
                     <div class="flex space-x-2">
-                        <button onclick="editCommunity('<?php echo $community['name']; ?>')" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
+                        <button onclick="editCommunity('<?php echo $community['name']; ?>', '<?php echo $community['category']; ?>', '<?php echo $community['link']; ?>')" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all">
                             <i class="fas fa-edit text-xs"></i>
                         </button>
                         <button onclick="deleteCommunity('<?php echo $community['name']; ?>')" class="w-8 h-8 rounded-lg bg-slate-100 text-red-500 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all">
@@ -111,16 +120,30 @@ $communities = [
             });
         }
 
-        function editCommunity(name) {
+        function editCommunity(name, category, link) {
             Swal.fire({
                 title: 'Edit Community',
-                text: "Editing " + name,
-                icon: 'info',
-                input: 'text',
-                inputLabel: 'Group Name',
-                inputValue: name,
+                html: `
+                    <div class="text-left">
+                        <label class="block text-xs font-bold text-slate-500 mb-1">Group Name</label>
+                        <input id="swal-edit-1" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none mb-4" value="${name}">
+                        <label class="block text-xs font-bold text-slate-500 mb-1">Category</label>
+                        <input id="swal-edit-2" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none mb-4" value="${category}">
+                        <label class="block text-xs font-bold text-slate-500 mb-1">WhatsApp Invite Link</label>
+                        <input id="swal-edit-3" class="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none" value="${link}">
+                    </div>
+                `,
                 showCancelButton: true,
-                confirmButtonColor: '#2563eb'
+                confirmButtonColor: '#2563eb',
+                confirmButtonText: 'Save Changes',
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        document.getElementById('swal-edit-1').value,
+                        document.getElementById('swal-edit-2').value,
+                        document.getElementById('swal-edit-3').value
+                    ]
+                }
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire('Saved!', 'Community details updated.', 'success');
@@ -139,6 +162,39 @@ $communities = [
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire('Deleted!', 'Group has been removed.', 'success');
+                }
+            });
+        }
+
+        function quickAddLink() {
+            const link = document.getElementById('quick-link-input').value;
+            if (!link) {
+                Swal.fire('Error', 'Please paste a valid WhatsApp link.', 'error');
+                return;
+            }
+            if (!link.includes('chat.whatsapp.com')) {
+                Swal.fire('Invalid Link', 'Please paste a valid WhatsApp invite link.', 'warning');
+                return;
+            }
+            
+            Swal.fire({
+                title: 'Link Detected!',
+                text: 'Configure group details for this link:',
+                input: 'text',
+                inputLabel: 'Group Name',
+                inputPlaceholder: 'e.g. SIT Cricket Group',
+                showCancelButton: true,
+                confirmButtonText: 'Finish Adding',
+                preConfirm: (name) => {
+                    if (!name) {
+                        Swal.showValidationMessage('Group name is required');
+                    }
+                    return name;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Successfully Added!', 'The link has been registered.', 'success');
+                    document.getElementById('quick-link-input').value = '';
                 }
             });
         }

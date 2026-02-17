@@ -29,8 +29,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </a>
 
         <a href="content.php" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 <?php echo ($current_page == 'content.php') ? 'bg-blue-600/10 text-blue-400 border border-blue-600/20' : 'text-slate-400 hover:bg-slate-800 hover:text-white'; ?>">
-            <i class="fas fa-folder-open w-5"></i>
-            <span class="font-medium">Content Hub</span>
+            <i class="fas fa-home w-5"></i>
+            <span class="font-medium">Explore Stays</span>
         </a>
 
         <div class="pt-6 pb-2">

@@ -5,16 +5,16 @@ require_once 'auth-check.php';
 $stats = [
     'total_users' => 1250,
     'active_communities' => 45,
-    'total_resources' => 156,
+    'total_resources' => 86, // Representing total stay listings
     'pending_reports' => 3
 ];
 
 // Mock Recent Activity
 $activities = [
-    ['user' => 'Rahul Sharma', 'action' => 'joined SIT Community', 'time' => '2 mins ago'],
-    ['user' => 'Admin', 'action' => 'added new WhatsApp group "Mess Help"', 'time' => '1 hour ago'],
-    ['user' => 'Sneha Patil', 'action' => 'uploaded "COA Lab Manual"', 'time' => '3 hours ago'],
-    ['user' => 'Vikas Kor', 'action' => 'verified as CR', 'time' => '5 hours ago'],
+    ['user' => 'Rahul Sharma', 'action' => 'added new PG "Malti Kunj"', 'time' => '2 mins ago'],
+    ['user' => 'Admin', 'action' => 'verified "Sunshine Flats" listing', 'time' => '1 hour ago'],
+    ['user' => 'Sunil PG', 'action' => 'updated rent for "Yukio Pg"', 'time' => '3 hours ago'],
+    ['user' => 'Vikas Kor', 'action' => 'added "Green Valley" Flat', 'time' => '5 hours ago'],
 ];
 ?>
 <!DOCTYPE html>
@@ -81,7 +81,7 @@ $activities = [
                 <p class="text-3xl font-bold text-slate-800 mt-1"><?php echo $stats['active_communities']; ?></p>
             </div>
 
-            <!-- Content Hub -->
+            <!-- Explore Stays -->
             <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
                 <div class="flex justify-between items-start mb-4">
                     <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
@@ -89,7 +89,7 @@ $activities = [
                     </div>
                     <span class="text-xs font-bold text-purple-500 bg-purple-50 px-2 py-1 rounded-lg">Stable</span>
                 </div>
-                <h3 class="text-slate-500 text-sm font-medium">Resources</h3>
+                <h3 class="text-slate-500 text-sm font-medium">Stays Active</h3>
                 <p class="text-3xl font-bold text-slate-800 mt-1"><?php echo $stats['total_resources']; ?></p>
             </div>
 
@@ -153,9 +153,9 @@ $activities = [
                     </button>
                     <button class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-50 text-slate-700 hover:bg-slate-800 hover:text-white transition-all group">
                         <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center group-hover:bg-white/20">
-                            <i class="fas fa-cloud-upload-alt"></i>
+                            <i class="fas fa-house-user"></i>
                         </div>
-                        <span class="font-bold">Upload Resource</span>
+                        <span class="font-bold">Manage Stays</span>
                     </button>
                 </div>
 
