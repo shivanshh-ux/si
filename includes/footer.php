@@ -27,7 +27,7 @@
                     <ul class="space-y-2">
                         <li><a href="index.php" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
                         <li><a href="discover.php" class="text-gray-400 hover:text-white transition-colors">Discover</a></li>
-                        <li><a href="resource-hub.php" class="text-gray-400 hover:text-white transition-colors">Resource Hub</a></li>
+                        <li><a href="resource-hub.php" class="text-gray-400 hover:text-white transition-colors">Explore Stays</a></li>
                         <li><a href="professional-communities.php" class="text-gray-400 hover:text-white transition-colors">Professional Communities</a></li>
                     </ul>
                 </div>

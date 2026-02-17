@@ -174,7 +174,14 @@ $is_intl = $p['international_student'] ?? false;
                     <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded">CAMPUS-WIDE</span>
                 </div>
                 <h3 class="text-xl font-bold text-gray-800 mb-2">International Students Comm.</h3>
-                <p class="text-gray-500 text-sm mb-6">Support and communication for all international students on campus.</p>
+                <p class="text-gray-500 text-sm mb-4">Support and communication for all international students on campus.</p>
+                
+                <ul class="space-y-2 mb-6 text-gray-700 text-sm">
+                    <li class="flex items-center"><i class="fas fa-passport text-purple-500 mr-2"></i>Visa & Documentation Support</li>
+                    <li class="flex items-center"><i class="fas fa-pizza-slice text-purple-500 mr-2"></i>Culture Exchange Events</li>
+                    <li class="flex items-center"><i class="fas fa-handshake text-purple-500 mr-2"></i>Global Networking</li>
+                </ul>
+
                 <div class="flex items-center text-sm text-gray-400 mb-6">
                     <i class="fas fa-users mr-2"></i> 124 members
                 </div>
@@ -194,7 +201,14 @@ $is_intl = $p['international_student'] ?? false;
                         <span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded">ACCOMMODATION</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-2"><?= $acc ?> Community</h3>
-                    <p class="text-gray-500 text-sm mb-6">Campus-wide group for students living in <?= strtolower($acc) ?>s.</p>
+                    <p class="text-gray-500 text-sm mb-4">Campus-wide group for students living in <?= strtolower($acc) ?>s.</p>
+                    
+                    <ul class="space-y-2 mb-6 text-gray-700 text-sm">
+                        <li class="flex items-center"><i class="fas fa-search-location text-green-500 mr-2"></i>Verified Roommate Search</li>
+                        <li class="flex items-center"><i class="fas fa-wallet text-green-500 mr-2"></i>Rent Optimization Tips</li>
+                        <li class="flex items-center"><i class="fas fa-shield-alt text-green-500 mr-2"></i>Property Safety Reviews</li>
+                    </ul>
+
                     <div class="flex items-center text-sm text-gray-400 mb-6">
                         <i class="fas fa-users mr-2"></i> 450 members
                     </div>
@@ -215,7 +229,14 @@ $is_intl = $p['international_student'] ?? false;
                         <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded"><?= strtoupper($campus) ?> MESS</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Student Mess Community</h3>
-                    <p class="text-gray-500 text-sm mb-6">Report issues, discuss menus, and manage crowd for <?= $p['mess'] ?>.</p>
+                    <p class="text-gray-500 text-sm mb-4">Report issues, discuss menus, and manage crowd for <?= $p['mess'] ?>.</p>
+                    
+                    <ul class="space-y-2 mb-6 text-gray-700 text-sm">
+                        <li class="flex items-center"><i class="fas fa-calendar-alt text-orange-500 mr-2"></i>Weekly Menu Planning</li>
+                        <li class="flex items-center"><i class="fas fa-apple-alt text-orange-500 mr-2"></i>Nutrition & Diet Tips</li>
+                        <li class="flex items-center"><i class="fas fa-hand-sparkles text-orange-500 mr-2"></i>Hygiene Quality Checks</li>
+                    </ul>
+
                     <div class="flex items-center text-sm text-gray-400 mb-6">
                         <i class="fas fa-users mr-2"></i> 800 members
                     </div>
@@ -254,7 +275,14 @@ $is_intl = $p['international_student'] ?? false;
                         <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">FITNESS</span>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-2"><?= $gym ?> Community</h3>
-                    <p class="text-gray-500 text-sm mb-6">Connect with fellow student athletes at the <?= $gym ?>.</p>
+                    <p class="text-gray-500 text-sm mb-4">Connect with fellow student athletes at the <?= $gym ?>.</p>
+                    
+                    <ul class="space-y-2 mb-6 text-gray-700 text-sm">
+                        <li class="flex items-center"><i class="fas fa-user-friends text-blue-500 mr-2"></i>Training Buddy Matching</li>
+                        <li class="flex items-center"><i class="fas fa-pills text-blue-500 mr-2"></i>Supplement Guidance</li>
+                        <li class="flex items-center"><i class="fas fa-video text-blue-500 mr-2"></i>Equipment Tutorials</li>
+                    </ul>
+
                     <div class="flex items-center text-sm text-gray-400 mb-6">
                         <i class="fas fa-users mr-2"></i> 210 members
                     </div>

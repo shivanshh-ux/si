@@ -377,6 +377,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!year) { Swal.fire('Error', 'Please select your academic year', 'error'); return false; }
             }
 
+            // Step 6: Gym Validation
+            if (currentTab === 6) {
+                const gym = document.querySelector('input[name="gym"]:checked');
+                if (!gym) { Swal.fire('Error', 'Please select a gym option', 'error'); return false; }
+            }
+
             if (currentTab === 7) {
                 const country = document.querySelector('input[name="country"]:checked');
                 if (!country) { Swal.fire('Error', 'Please select your origin', 'error'); return false; }

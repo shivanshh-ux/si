@@ -17,8 +17,10 @@ $pg_listings = [
         'rules' => [
             'Opposite genders allowed',
             'In time: 10:00 PM',
-            'Friends can come at pg anytime'
-        ]
+            'friends can come at pg anytime'
+        ],
+        'broker_name' => 'Rahul Sharma',
+        'broker_contact' => '+91 91234 56789'
     ],
     [
         'type' => 'PG',
@@ -35,7 +37,9 @@ $pg_listings = [
             'No opposite genders in rooms',
             'In time: 11:00 PM',
             'No loud music after 10 PM'
-        ]
+        ],
+        'broker_name' => 'Sunil PG Services',
+        'broker_contact' => '+91 88776 65544'
     ],
     [
         'type' => 'Flat',
@@ -66,7 +70,9 @@ $pg_listings = [
             'Biometric entry',
             'In time: 10:30 PM',
             'Strict no-alcohol policy'
-        ]
+        ],
+        'broker_name' => 'Stanza Concierge',
+        'broker_contact' => '+91 70001 00002'
     ],
     [
         'type' => 'Flat',
@@ -87,24 +93,24 @@ $pg_listings = [
 ?>
 
 <!-- Hero Section -->
-<section class="bg-gray-900 pt-8 pb-12">
+<section class="bg-gradient-to-br from-indigo-950 via-blue-900 to-indigo-900 pt-8 pb-12 min-h-screen">
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold text-white text-center mb-2" data-aos="fade-up">Find Your Perfect Stay</h1>
-        <p class="text-gray-400 text-center mb-8" data-aos="fade-up" data-aos-delay="100">PGs & Flats near your college</p>
+        <h1 class="text-4xl font-bold text-white text-center mb-2" data-aos="fade-up">Explore Stays</h1>
+        <p class="text-gray-400 text-center mb-8" data-aos="fade-up" data-aos-delay="100">Find the best PGs & Flats near your college</p>
 
         <!-- Filters -->
-        <div class="max-w-4xl mx-auto mb-10 bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700 flex flex-col md:flex-row gap-4 items-center justify-between" data-aos="fade-up" data-aos-delay="200">
+        <div class="max-w-4xl mx-auto mb-10 bg-white/10 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/10 flex flex-col md:flex-row gap-4 items-center justify-between" data-aos="fade-up" data-aos-delay="200">
             <!-- Type Filter -->
-            <div class="flex bg-gray-700 rounded-lg p-1">
-                <button class="filter-btn active px-6 py-2 rounded-md text-sm font-medium transition-all text-white bg-primary" data-filter="all">All</button>
-                <button class="filter-btn px-6 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition-all" data-filter="PG">PGs</button>
-                <button class="filter-btn px-6 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition-all" data-filter="Flat">Flats</button>
+            <div class="flex bg-black/20 rounded-lg p-1">
+                <button class="filter-btn active px-6 py-2 rounded-md font-bold transition-all text-white bg-primary" data-filter="all">All</button>
+                <button class="filter-btn px-6 py-2 rounded-md font-bold text-blue-100 hover:text-white transition-all" data-filter="PG">PGs</button>
+                <button class="filter-btn px-6 py-2 rounded-md font-bold text-blue-100 hover:text-white transition-all" data-filter="Flat">Flats</button>
             </div>
 
             <!-- Distance Filter -->
             <div class="flex items-center space-x-3 w-full md:w-auto">
-                <span class="text-gray-400 text-sm whitespace-nowrap"><i class="fas fa-map-marker-alt mr-1"></i> Max Distance:</span>
-                <select id="distanceFilter" class="bg-gray-700 text-white text-sm rounded-lg px-4 py-2 border border-gray-600 focus:outline-none focus:border-primary w-full md:w-48">
+                <span class="text-blue-100 text-sm whitespace-nowrap"><i class="fas fa-map-marker-alt mr-1"></i> Max Distance:</span>
+                <select id="distanceFilter" class="bg-black/20 text-white text-sm rounded-lg px-4 py-2 border border-white/20 focus:outline-none focus:border-primary w-full md:w-48">
                     <option value="100">Any Distance</option>
                     <option value="2">< 2 km</option>
                     <option value="5">< 5 km</option>
@@ -178,22 +184,24 @@ $pg_listings = [
                                 </div>
                             </div>
 
-                            <?php if ($pg['type'] === 'Flat'): ?>
-                                <!-- Broker Details for Flats -->
-                                <div class="bg-amber-50 rounded-xl p-4 border border-amber-100">
+                            <!-- Broker Details -->
+                            <?php if (isset($pg['broker_name'])): ?>
+                                <div class="bg-amber-50 rounded-xl p-4 border border-amber-100 mt-4">
                                     <div class="flex justify-between items-center">
                                         <div>
                                             <h3 class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">Broker Details</h3>
                                             <p class="font-bold text-gray-800"><?= $pg['broker_name'] ?></p>
                                         </div>
-                                        <a href="tel:<?= $pg['broker_contact'] ?>" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-2xl shadow-amber-200">
+                                        <a href="tel:<?= $pg['broker_contact'] ?>" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-amber-100">
                                             <i class="fas fa-phone-alt mr-2"></i> Contact
                                         </a>
                                     </div>
                                 </div>
-                            <?php else: ?>
+                            <?php endif; ?>
+
+                            <?php if ($pg['type'] === 'PG'): ?>
                                 <!-- Rules for PGs -->
-                                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 mt-4">
                                     <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Rules & Regulations</h3>
                                     <ul class="space-y-2">
                                         <?php foreach ($pg['rules'] as $rule): ?>
@@ -213,16 +221,20 @@ $pg_listings = [
         
         <!-- No Results Message -->
         <div id="noResults" class="hidden text-center py-20">
-            <div class="inline-block p-4 rounded-full bg-gray-800 mb-4">
-                <i class="fas fa-search text-gray-500 text-3xl"></i>
+            <div class="inline-block p-4 rounded-full bg-white/10 mb-4">
+                <i class="fas fa-search text-blue-200 text-3xl"></i>
             </div>
             <h3 class="text-xl font-bold text-white mb-2">No listings found</h3>
-            <p class="text-gray-400">Try adjusting your filters to see more results.</p>
+            <p class="text-blue-200">Try adjusting your filters to see more results.</p>
         </div>
     </div>
 </section>
 
 <style>
+    /* Ensure the body background matches the theme to prevent white gaps */
+    body {
+        background-color: #030712; /* Matches indigo-950 */
+    }
     /* Override global footer margin for this page only */
     footer {
         margin-top: 0 !important;
