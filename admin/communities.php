@@ -26,26 +26,27 @@ $communities = [
 
     <?php include 'sidebar.php'; ?>
 
-    <main class="ml-64 p-8">
+    <main class="ml-0 lg:ml-64 p-4 md:p-8 pb-24 lg:pb-8">
         <!-- Header -->
-        <header class="flex justify-between items-center mb-10">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 space-y-4 md:space-y-0">
             <div>
                 <h1 class="text-2xl font-bold text-slate-800">WhatsApp Communities</h1>
-                <p class="text-slate-500 text-sm">Manage verified WhatsApp group links and community categories.</p>
+                <p class="text-slate-500 text-sm">Manage verified WhatsApp group links.</p>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
                 <div class="hidden md:flex items-center bg-white border border-slate-200 rounded-xl px-4 py-2 shadow-sm focus-within:border-green-500 transition-all">
                     <i class="fas fa-link text-slate-400 mr-2 text-xs"></i>
-                    <input type="text" id="quick-link-input" placeholder="Paste link to add..." class="text-sm focus:outline-none w-48">
+                    <input type="text" id="quick-link-input" placeholder="Paste link..." class="text-sm focus:outline-none w-32 xl:w-48">
                     <button onclick="quickAddLink()" class="ml-2 text-green-600 hover:text-green-700">
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
-                <button onclick="addCommunity()" class="bg-green-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-green-700 transition-all shadow-lg shadow-green-500/20 flex items-center">
-                    <i class="fas fa-plus mr-2"></i> Create New Group
+                <button onclick="addCommunity()" class="bg-green-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-green-700 transition-all shadow-lg shadow-green-500/20 flex items-center justify-center flex-1 md:flex-none">
+                    <i class="fas fa-plus mr-2"></i> Create Group
                 </button>
             </div>
         </header>
+
 
         <!-- Communities Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

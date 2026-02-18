@@ -26,23 +26,24 @@ $stays = [
 
     <?php include 'sidebar.php'; ?>
 
-    <main class="ml-64 p-8">
+    <main class="ml-0 lg:ml-64 p-4 md:p-8 pb-24 lg:pb-8">
         <!-- Header -->
-        <header class="flex justify-between items-center mb-10">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 space-y-4 md:space-y-0">
             <div>
                 <h1 class="text-2xl font-bold text-slate-800">Explore Stays Control</h1>
-                <p class="text-slate-500 text-sm">Manage PG and Flat groups available on the website.</p>
+                <p class="text-slate-500 text-sm">Manage PG and Flat listings.</p>
             </div>
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <input type="text" placeholder="Search stays..." class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-800 transition-all w-48 shadow-sm">
+            <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
+                <div class="relative flex-1 md:flex-none">
+                    <input type="text" placeholder="Search stays..." class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500/20 focus:border-slate-800 transition-all w-full md:w-48 shadow-sm">
                     <i class="fas fa-search absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
                 </div>
-                <button onclick="addStay()" class="bg-slate-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-900 transition-all shadow-lg shadow-slate-500/20 flex items-center">
-                    <i class="fas fa-plus mr-2"></i> Add New Stay
+                <button onclick="addStay()" class="bg-slate-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-slate-900 transition-all shadow-lg shadow-slate-500/20 flex items-center justify-center flex-1 md:flex-none">
+                    <i class="fas fa-plus mr-2"></i> Add Stay
                 </button>
             </div>
         </header>
+
 
         <!-- Content Table -->
         <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">

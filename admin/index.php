@@ -34,18 +34,18 @@ $activities = [
 
     <?php include 'sidebar.php'; ?>
 
-    <main class="ml-64 p-8">
+    <main class="ml-0 lg:ml-64 p-4 md:p-8 pb-24 lg:pb-8">
         <!-- Header -->
-        <header class="flex justify-between items-center mb-10">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 space-y-4 md:space-y-0">
             <div>
                 <h1 class="text-2xl font-bold text-slate-800">Operational Overview</h1>
-                <p class="text-slate-500 text-sm">Welcome back, Administrator. Here's what's happening today.</p>
+                <p class="text-slate-500 text-sm italic">Welcome back, Administrator.</p>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-end">
                 <button class="bg-white p-2.5 rounded-xl border border-slate-200 text-slate-500 hover:text-slate-800 transition-all shadow-sm">
                     <i class="fas fa-bell"></i>
                 </button>
-                <div class="h-10 w-px bg-slate-200 mx-2"></div>
+                <div class="h-10 w-px bg-slate-200 mx-2 hidden md:block"></div>
                 <div class="flex items-center space-x-3 bg-white p-1.5 pr-4 rounded-xl border border-slate-200 shadow-sm">
                     <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs capitalize">
                         <?php echo substr($_SESSION['user_name'] ?? 'A', 0, 1); ?>
@@ -54,6 +54,7 @@ $activities = [
                 </div>
             </div>
         </header>
+
 
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">

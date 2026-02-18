@@ -6,7 +6,7 @@ include 'includes/header.php';
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-primary/10 via-white to-accent/10">
-    <div class="container mx-auto px-4 py-20 ">
+    <div class="container mx-auto px-4 pt-20 pb-10">
         <div class="grid md:grid-cols-2 gap-10 items-center ">
              <div data-aos="fade-right"> 
                  <!-- <span class="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-4">
@@ -155,7 +155,7 @@ $is_intl = $p['international_student'] ?? false;
 ?>
 
 <!-- Communities Section -->
-<section class="py-12 bg-gray-50">
+<section class="pt-10 pb-12 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12" data-aos="fade-up">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">Your Communities</h2>

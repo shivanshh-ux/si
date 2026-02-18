@@ -27,31 +27,31 @@ $users = [
 
     <?php include 'sidebar.php'; ?>
 
-    <main class="ml-64 p-8">
+    <main class="ml-0 lg:ml-64 p-4 md:p-8 pb-24 lg:pb-8">
         <!-- Header -->
-        <header class="flex justify-between items-center mb-10">
+        <header class="flex flex-col xl:flex-row justify-between items-start xl:items-center mb-10 space-y-4 xl:space-y-0">
             <div>
                 <h1 class="text-2xl font-bold text-slate-800">User Management</h1>
-                <p class="text-slate-500 text-sm">Review, verify, and manage all registered student accounts.</p>
+                <p class="text-slate-500 text-sm">Manage registered student accounts.</p>
             </div>
-            <div class="flex items-center space-x-4">
+            <div class="flex flex-wrap items-center gap-4 w-full xl:w-auto">
                 <div class="hidden lg:flex items-center bg-white border border-slate-200 rounded-xl px-4 py-2 shadow-sm focus-within:border-blue-500 transition-all">
                     <i class="fas fa-id-card text-slate-400 mr-2 text-xs"></i>
-                    <input type="text" id="quick-verify-input" placeholder="Enter PRN to verify..." class="text-sm focus:outline-none w-40">
+                    <input type="text" id="quick-verify-input" placeholder="Enter PRN..." class="text-sm focus:outline-none w-32">
                     <button onclick="quickVerifyUser()" class="ml-2 text-blue-600 hover:text-blue-700">
                         <i class="fas fa-check-circle"></i>
                     </button>
                 </div>
-                <div class="h-8 w-px bg-slate-200 mx-1 hidden lg:block"></div>
-                <div class="relative">
-                    <input type="text" placeholder="Search users..." class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all w-48 shadow-sm">
+                <div class="relative flex-1 md:flex-none">
+                    <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all w-full md:w-48 shadow-sm">
                     <i class="fas fa-search absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
                 </div>
-                <button onclick="addUser()" class="bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 flex items-center">
+                <button onclick="addUser()" class="bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 flex items-center justify-center flex-1 md:flex-none">
                     <i class="fas fa-user-plus mr-2"></i> Add User
                 </button>
             </div>
         </header>
+
 
         <!-- Users Table -->
         <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">

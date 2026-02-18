@@ -236,7 +236,7 @@ $pg_listings = [
        2. Remove all theme-level margins and paddings that create gaps
     */
     html, body {
-        background: radial-gradient(circle at top right, #1e1b4b, #030712) fixed !important;
+        background: #000000 !important;
         margin: 0 !important;
         padding: 0 !important;
         min-height: 100vh !important;
