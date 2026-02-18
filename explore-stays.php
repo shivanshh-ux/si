@@ -110,10 +110,10 @@ $pg_listings = [
             <div class="flex items-center space-x-3 w-full md:w-auto">
                 <span class="text-blue-100 text-sm whitespace-nowrap"><i class="fas fa-map-marker-alt mr-1"></i> Max Distance:</span>
                 <select id="distanceFilter" class="bg-black/20 text-white text-sm rounded-lg px-4 py-2 border border-white/20 focus:outline-none focus:border-primary w-full md:w-48">
-                    <option value="100">Any Distance</option>
-                    <option value="2">< 2 km</option>
-                    <option value="5">< 5 km</option>
-                    <option value="10">< 10 km</option>
+                    <option class="bg-black" value="100">Any Distance</option>
+                    <option class="bg-black" value="2">< 2 km</option>
+                    <option class="bg-black" value="5">< 5 km</option>
+                    <option class="bg-black" value="10">< 10 km</option>
                 </select>
             </div>
         </div>
